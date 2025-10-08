@@ -4,7 +4,7 @@ include('serveur.php');
 require_once 'themeRoot.php';
 
 // Récupération des projets depuis la base de données
-$stmt = $connexion->query("SELECT * FROM projets");
+$stmt = $connexion->query("SELECT * FROM projets ORDER BY id DESC");
 $projets = $stmt->fetchAll();
 ?>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 08 oct. 2025 à 11:07
+-- Généré le : mer. 08 oct. 2025 à 11:16
 -- Version du serveur : 8.0.39
 -- Version de PHP : 8.2.12
 
@@ -326,7 +326,7 @@ CREATE TABLE `projets` (
 --
 
 INSERT INTO `projets` (`id`, `libelleProjet`, `descriptionProjet`, `urlProjet`, `dateRealisation`) VALUES
-(1, 'Site de sommaire', 'Projet toujours en cours', 'https://summury.22web.org/', '2025-10-07');
+(1, 'Site de sommaire', 'Un projet qui me suis depuis mes débuts dans le développement web, que j\'améliore petit à petit au fur et à mesure que j\'acquiert des compétences, ce projet montre l\'évolutions de mes compétences. Ce projet est toujours en cours.', 'https://summury.22web.org/', '2025-10-07');
 
 -- --------------------------------------------------------
 
@@ -517,7 +517,7 @@ ALTER TABLE `personnelle`
 -- AUTO_INCREMENT pour la table `projets`
 --
 ALTER TABLE `projets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
