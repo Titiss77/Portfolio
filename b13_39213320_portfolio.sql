@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : sql313.byethost13.com
--- Généré le :  mer. 08 oct. 2025 à 03:32
--- Version du serveur :  11.4.7-MariaDB
--- Version de PHP :  7.2.22
+-- Hôte : 127.0.0.1
+-- Généré le : mer. 08 oct. 2025 à 10:19
+-- Version du serveur : 8.0.39
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `b13_39213320_portfolio`
+-- Base de données : `b13_39213320_portfolio`
 --
 
 -- --------------------------------------------------------
@@ -29,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categoriesbloc1` (
-  `id` int(6) NOT NULL,
+  `id` int NOT NULL,
   `appellation` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `categoriesbloc1`
@@ -48,22 +47,22 @@ INSERT INTO `categoriesbloc1` (`id`, `appellation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Competences`
+-- Structure de la table `competences`
 --
 
-CREATE TABLE `Competences` (
-  `id` int(6) NOT NULL,
-  `idPersonne` int(6) NOT NULL DEFAULT 1,
+CREATE TABLE `competences` (
+  `id` int NOT NULL,
+  `idPersonne` int NOT NULL DEFAULT '1',
   `nom` varchar(100) NOT NULL,
-  `pourcentage` int(11) NOT NULL,
+  `pourcentage` int NOT NULL,
   `type` enum('professionnel','personnel') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `Competences`
+-- Déchargement des données de la table `competences`
 --
 
-INSERT INTO `Competences` (`id`, `idPersonne`, `nom`, `pourcentage`, `type`) VALUES
+INSERT INTO `competences` (`id`, `idPersonne`, `nom`, `pourcentage`, `type`) VALUES
 (1, 1, 'HTML / CSS', 100, 'professionnel'),
 (2, 1, 'MySQL', 100, 'professionnel'),
 (3, 1, 'JavaScript', 70, 'professionnel'),
@@ -76,22 +75,22 @@ INSERT INTO `Competences` (`id`, `idPersonne`, `nom`, `pourcentage`, `type`) VAL
 -- --------------------------------------------------------
 
 --
--- Structure de la table `competences`
+-- Structure de la table `competencesacocher`
 --
 
-CREATE TABLE `competences` (
-  `id` int(6) NOT NULL,
-  `idCategorie` int(6) NOT NULL,
+CREATE TABLE `competencesacocher` (
+  `id` int NOT NULL,
+  `idCategorie` int NOT NULL,
   `libelle` text NOT NULL,
-  `idJustification` int(6) DEFAULT NULL,
+  `idJustification` int DEFAULT NULL,
   `vu` enum('0','1') NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Déchargement des données de la table `competences`
+-- Déchargement des données de la table `competencesacocher`
 --
 
-INSERT INTO `competences` (`id`, `idCategorie`, `libelle`, `idJustification`, `vu`) VALUES
+INSERT INTO `competencesacocher` (`id`, `idCategorie`, `libelle`, `idJustification`, `vu`) VALUES
 (1, 1, '1. Recenser et identifier les ressources numériques', 2, '1'),
 (2, 1, '2. Mettre en place et vérifier les niveaux d\'habilitation associés à un service', 1, '0'),
 (3, 1, '3. Exploiter des référentiels, normes et standards adoptés par le prestataire informatique', 1, '0'),
@@ -122,15 +121,15 @@ INSERT INTO `competences` (`id`, `idCategorie`, `libelle`, `idJustification`, `v
 --
 
 CREATE TABLE `contact` (
-  `id` int(6) NOT NULL,
+  `id` int NOT NULL,
   `adressIp` varchar(15) NOT NULL,
   `date` date NOT NULL,
-  `sexe` int(1) NOT NULL,
+  `sexe` int NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(20) NOT NULL,
   `mail` varchar(50) NOT NULL,
   `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `contact`
@@ -144,24 +143,24 @@ INSERT INTO `contact` (`id`, `adressIp`, `date`, `sexe`, `nom`, `prenom`, `mail`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ExpPro`
+-- Structure de la table `exppro`
 --
 
-CREATE TABLE `ExpPro` (
-  `id` int(6) NOT NULL,
-  `idPersonne` int(6) NOT NULL DEFAULT 1,
+CREATE TABLE `exppro` (
+  `id` int NOT NULL,
+  `idPersonne` int NOT NULL DEFAULT '1',
   `Libelle` varchar(30) NOT NULL,
   `NomEntreprise` varchar(100) NOT NULL,
   `Periode` varchar(50) NOT NULL,
   `Description` text NOT NULL,
   `cheminImg` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `ExpPro`
+-- Déchargement des données de la table `exppro`
 --
 
-INSERT INTO `ExpPro` (`id`, `idPersonne`, `Libelle`, `NomEntreprise`, `Periode`, `Description`, `cheminImg`) VALUES
+INSERT INTO `exppro` (`id`, `idPersonne`, `Libelle`, `NomEntreprise`, `Periode`, `Description`, `cheminImg`) VALUES
 (1, 1, 'Agriculture', 'Partag\'emploi', 'Juillet 2021', 'Arrachage des échalottes', './images/partage_emploi.png'),
 (2, 1, 'Agriculture', 'Partag\'emploi', 'Fevrier 2022', 'Mise en terre des échalottes', './images/partage_emploi.png'),
 (3, 1, 'Stage de 2nd', 'Imprimerie', 'Avril 2022', 'Stage de seconde.', './images/imprimante.png'),
@@ -171,23 +170,23 @@ INSERT INTO `ExpPro` (`id`, `idPersonne`, `Libelle`, `NomEntreprise`, `Periode`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Formation`
+-- Structure de la table `formation`
 --
 
-CREATE TABLE `Formation` (
-  `id` int(6) NOT NULL,
-  `idPersonne` int(6) NOT NULL DEFAULT 1,
+CREATE TABLE `formation` (
+  `id` int NOT NULL,
+  `idPersonne` int NOT NULL DEFAULT '1',
   `NomEtablissement` varchar(100) NOT NULL,
   `Periode` varchar(11) NOT NULL,
   `Description` text NOT NULL,
   `CheminImg` varchar(100) NOT NULL DEFAULT './images/ecole.png'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `Formation`
+-- Déchargement des données de la table `formation`
 --
 
-INSERT INTO `Formation` (`id`, `idPersonne`, `NomEtablissement`, `Periode`, `Description`, `CheminImg`) VALUES
+INSERT INTO `formation` (`id`, `idPersonne`, `NomEtablissement`, `Periode`, `Description`, `CheminImg`) VALUES
 (1, 0, 'Collège Auguste Brizeux', '2016 - 2020', 'Obtention du Brevet des Collèges', './images/ecole.png'),
 (2, 1, 'Lycée Auguste Brizeux', '2020 - 2024', 'Obtention du Baccalauréat Général mention assez bien', './images/ecole.png'),
 (3, 1, 'Lycée Jean Chaptal', '2024 - ...', 'Etudes supérieurs', './images/ecole.png');
@@ -195,23 +194,23 @@ INSERT INTO `Formation` (`id`, `idPersonne`, `NomEtablissement`, `Periode`, `Des
 -- --------------------------------------------------------
 
 --
--- Structure de la table `InfoContact`
+-- Structure de la table `infocontact`
 --
 
-CREATE TABLE `InfoContact` (
-  `id` int(6) NOT NULL,
+CREATE TABLE `infocontact` (
+  `id` int NOT NULL,
   `Nom` varchar(100) NOT NULL,
   `Adresse` varchar(100) NOT NULL,
   `Telephone` varchar(13) NOT NULL,
   `Mail` varchar(100) NOT NULL,
   `Permis` enum('Oui','Non') DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `InfoContact`
+-- Déchargement des données de la table `infocontact`
 --
 
-INSERT INTO `InfoContact` (`id`, `Nom`, `Adresse`, `Telephone`, `Mail`, `Permis`) VALUES
+INSERT INTO `infocontact` (`id`, `Nom`, `Adresse`, `Telephone`, `Mail`, `Permis`) VALUES
 (1, 'FRANCES--LAVILLAUROY Mathis', '27 Cité de la Ruche - 29000 Quimper', '+33680357193', 'mathisfrances11@gmail.com', 'Oui');
 
 -- --------------------------------------------------------
@@ -221,10 +220,10 @@ INSERT INTO `InfoContact` (`id`, `Nom`, `Adresse`, `Telephone`, `Mail`, `Permis`
 --
 
 CREATE TABLE `justification` (
-  `id` int(6) NOT NULL,
+  `id` int NOT NULL,
   `justification` text NOT NULL,
   `imgUrl` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `justification`
@@ -250,10 +249,10 @@ INSERT INTO `justification` (`id`, `justification`, `imgUrl`) VALUES
 --
 
 CREATE TABLE `lienexternes` (
-  `idLien` int(6) NOT NULL,
+  `idLien` int NOT NULL,
   `libelle` varchar(100) NOT NULL,
   `url` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lienexternes`
@@ -270,10 +269,10 @@ INSERT INTO `lienexternes` (`idLien`, `libelle`, `url`) VALUES
 --
 
 CREATE TABLE `loisirs` (
-  `idLoisir` int(6) NOT NULL,
+  `idLoisir` int NOT NULL,
   `libelle` varchar(100) NOT NULL,
   `urlImage` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `loisirs`
@@ -291,7 +290,7 @@ INSERT INTO `loisirs` (`idLoisir`, `libelle`, `urlImage`) VALUES
 --
 
 CREATE TABLE `personnelle` (
-  `idPersonne` int(6) NOT NULL,
+  `idPersonne` int NOT NULL,
   `urlPdp` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nom` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `prenom` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -299,14 +298,14 @@ CREATE TABLE `personnelle` (
   `dateDeNaissance` date NOT NULL,
   `localisation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `meConcernant` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `personnelle`
 --
 
 INSERT INTO `personnelle` (`idPersonne`, `urlPdp`, `nom`, `prenom`, `etudes`, `dateDeNaissance`, `localisation`, `meConcernant`) VALUES
-(1, './CV/cv_num/images/me.png', '', 'Mathis', 'Étudiant en BTS SIO, option SLAM', '2006-07-02', 'Quimper, Finistère, France', 'Bonjour,\r\n\r\nJe m\'appel Mathis FRANCES--LAVILLAUROY, je suis actuellement en BTS SIO 2ème année.');
+(1, './CV/cv_num/images/me.png', 'FRANCES--LAVILLAUROY', 'Mathis', 'Étudiant en BTS SIO, option SLAM', '2006-07-02', 'Quimper, Finistère, France', 'Bonjour,\r\n\r\nJe m\'appel Mathis FRANCES--LAVILLAUROY, je suis actuellement en BTS SIO 2ème année.');
 
 -- --------------------------------------------------------
 
@@ -317,7 +316,7 @@ INSERT INTO `personnelle` (`idPersonne`, `urlPdp`, `nom`, `prenom`, `etudes`, `d
 CREATE TABLE `themes` (
   `varName` varchar(50) NOT NULL,
   `varValue` varchar(70) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `themes`
@@ -350,15 +349,15 @@ ALTER TABLE `categoriesbloc1`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Competences`
---
-ALTER TABLE `Competences`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Index pour la table `competences`
 --
 ALTER TABLE `competences`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `competencesacocher`
+--
+ALTER TABLE `competencesacocher`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idCategorie` (`idCategorie`),
   ADD KEY `idJustification` (`idJustification`);
@@ -370,21 +369,21 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `ExpPro`
+-- Index pour la table `exppro`
 --
-ALTER TABLE `ExpPro`
+ALTER TABLE `exppro`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Formation`
+-- Index pour la table `formation`
 --
-ALTER TABLE `Formation`
+ALTER TABLE `formation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `InfoContact`
+-- Index pour la table `infocontact`
 --
-ALTER TABLE `InfoContact`
+ALTER TABLE `infocontact`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -425,76 +424,76 @@ ALTER TABLE `themes`
 -- AUTO_INCREMENT pour la table `categoriesbloc1`
 --
 ALTER TABLE `categoriesbloc1`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `Competences`
---
-ALTER TABLE `Competences`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `competences`
 --
 ALTER TABLE `competences`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT pour la table `competencesacocher`
+--
+ALTER TABLE `competencesacocher`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `ExpPro`
+-- AUTO_INCREMENT pour la table `exppro`
 --
-ALTER TABLE `ExpPro`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `exppro`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT pour la table `Formation`
+-- AUTO_INCREMENT pour la table `formation`
 --
-ALTER TABLE `Formation`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `formation`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `InfoContact`
+-- AUTO_INCREMENT pour la table `infocontact`
 --
-ALTER TABLE `InfoContact`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `infocontact`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `justification`
 --
 ALTER TABLE `justification`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `lienexternes`
 --
 ALTER TABLE `lienexternes`
-  MODIFY `idLien` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idLien` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `loisirs`
 --
 ALTER TABLE `loisirs`
-  MODIFY `idLoisir` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idLoisir` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `personnelle`
 --
 ALTER TABLE `personnelle`
-  MODIFY `idPersonne` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPersonne` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `competences`
+-- Contraintes pour la table `competencesacocher`
 --
-ALTER TABLE `competences`
+ALTER TABLE `competencesacocher`
   ADD CONSTRAINT `idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categoriesbloc1` (`id`),
   ADD CONSTRAINT `idJustification` FOREIGN KEY (`idJustification`) REFERENCES `justification` (`id`);
 COMMIT;

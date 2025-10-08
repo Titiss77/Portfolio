@@ -66,7 +66,7 @@ require_once 'themeRoot.php';?>
             $categories = $stmt->fetchAll();
 
             foreach ($categories as $categorie) {
-                $stmtComp = $connexion->prepare("SELECT * FROM competences WHERE idCategorie = ? ORDER BY id ASC");
+                $stmtComp = $connexion->prepare("SELECT * FROM competencesacocher WHERE idCategorie = ? ORDER BY id ASC");
                 $stmtComp->execute([$categorie['id']]);
                 $competences = $stmtComp->fetchAll();
 
