@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 08 oct. 2025 à 10:31
+-- Généré le : mer. 08 oct. 2025 à 11:07
 -- Version du serveur : 8.0.39
 -- Version de PHP : 8.2.12
 
@@ -310,6 +310,27 @@ INSERT INTO `personnelle` (`idPersonne`, `urlPdp`, `nom`, `prenom`, `etudes`, `d
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `projets`
+--
+
+CREATE TABLE `projets` (
+  `id` int NOT NULL,
+  `libelleProjet` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `descriptionProjet` text COLLATE utf8mb4_general_ci NOT NULL,
+  `urlProjet` text COLLATE utf8mb4_general_ci NOT NULL,
+  `dateRealisation` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `projets`
+--
+
+INSERT INTO `projets` (`id`, `libelleProjet`, `descriptionProjet`, `urlProjet`, `dateRealisation`) VALUES
+(1, 'Site de sommaire', 'Projet toujours en cours', 'https://summury.22web.org/', '2025-10-07');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `themes`
 --
 
@@ -411,6 +432,12 @@ ALTER TABLE `personnelle`
   ADD PRIMARY KEY (`idPersonne`);
 
 --
+-- Index pour la table `projets`
+--
+ALTER TABLE `projets`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `themes`
 --
 ALTER TABLE `themes`
@@ -485,6 +512,12 @@ ALTER TABLE `loisirs`
 --
 ALTER TABLE `personnelle`
   MODIFY `idPersonne` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `projets`
+--
+ALTER TABLE `projets`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées
