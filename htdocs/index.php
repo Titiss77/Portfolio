@@ -16,7 +16,6 @@ error_reporting(E_ALL);
     include('header.php');
     include('fonction.php');
     require_once 'serveur.php';
-    require_once 'themeRoot.php';
     ?>
 
     <?php 

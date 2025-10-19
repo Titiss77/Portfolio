@@ -1,5 +1,4 @@
-<?php include('serveur.php'); 
-require_once 'themeRoot.php';?>
+<?php include('serveur.php');?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
