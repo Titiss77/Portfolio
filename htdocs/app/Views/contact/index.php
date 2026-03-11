@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-<?php include('head.php');?>
-    <title>Contacts</title>
-</head>
-
-<body>
-    <?php include('header.php');?>
-    
-    <div class="formulaire">
-    <form action="reponse.php" method="post">
+<div class="formulaire">
+    <form action="<?= base_url('contact/reponse') ?>" method="post">
         <h2>Formulaire de Contact</h2>
 
         <div class="sexe-container">
@@ -37,7 +26,3 @@
         </p>
     </form>
 </div>
-
-</body>
-
-</html>
