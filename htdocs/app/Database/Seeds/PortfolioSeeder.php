@@ -92,7 +92,7 @@ class PortfolioSeeder extends Seeder
             [
                 'id'                => 1,
                 'libelleProjet'     => 'Site de sommaire',
-                'descriptionProjet' => "Un projet qui me suis depuis mes débuts dans le développement web, que j'améliore petit à petit au fur et à mesure que j'acquiert des compétences, ce projet montre l'évolutions de mes compétences. Ce projet est toujours en cours.",
+                'descriptionProjet' => "Un projet perso qui me suis depuis mes débuts dans le développement web, en constante évolution avec mon évolution en cours.",
                 'urlProjet'         => 'https://summury.22web.org/',
                 'dateRealisation'   => '2025-10-07'
             ],
