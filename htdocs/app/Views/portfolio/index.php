@@ -6,7 +6,7 @@
         <div class="liens_extern">
             <p class="entete">Liens externes</p>
             <?php foreach ($lienExternes as $lien): ?>
-            <a href="<?= esc($lien['url']) ?>" target="_blank" id="lien">➜ <?= esc($lien['libelle']) ?></a>
+            <a href="<?= esc($lien['url']) ?>" target="blank" id="lien">➜ <?= esc($lien['libelle']) ?></a>
             <?php endforeach; ?>
         </div>
         <div class="div_age">

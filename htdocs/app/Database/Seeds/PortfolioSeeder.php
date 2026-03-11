@@ -34,7 +34,7 @@ class PortfolioSeeder extends Seeder
         ]);
 
         // 3. competencesacocher
-        // Note: Les valeurs 'vu' vides ('') de votre SQL ont été converties en '0' car le type est ENUM('0','1')
+        // Note: Les valeurs 'vu' vides ('') du SQL ont été converties en '0' car la colonne est ENUM('0','1')
         $this->db->table('competencesacocher')->insertBatch([
             ['id' => 1, 'idCategorie' => 1, 'libelle' => "1. Recenser et identifier les ressources numériques", 'idJustification' => 2, 'vu' => '1'],
             ['id' => 2, 'idCategorie' => 1, 'libelle' => "2. Mettre en place et vérifier les niveaux d'habilitation associés à un service", 'idJustification' => 1, 'vu' => '0'],
@@ -77,14 +77,14 @@ class PortfolioSeeder extends Seeder
         // 5. lienexternes
         $this->db->table('lienexternes')->insertBatch([
             ['idLien' => 1, 'libelle' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/mathis-frances-lavillauroy-83890a330/'],
-            ['idLien' => 2, 'libelle' => 'CV en ligne', 'url' => './CV/cv_num/index.php'],
+            ['idLien' => 2, 'libelle' => 'CV en ligne', 'url' => 'mathisfcslav-cv.22web.org'],
         ]);
 
         // 6. loisirs
         $this->db->table('loisirs')->insertBatch([
-            ['idLoisir' => 1, 'libelle' => 'Natation', 'urlImage' => 'CV/cv_num/images/natation.png'],
-            ['idLoisir' => 2, 'libelle' => 'Coder', 'urlImage' => 'CV/cv_num/images/coder.png'],
-            ['idLoisir' => 3, 'libelle' => 'Jeux Vidéo', 'urlImage' => 'CV/cv_num/images/gaming.png'],
+            ['idLoisir' => 1, 'libelle' => 'Natation', 'urlImage' => 'images/natation.png'],
+            ['idLoisir' => 2, 'libelle' => 'Coder', 'urlImage' => 'images/coder.png'],
+            ['idLoisir' => 3, 'libelle' => 'Jeux Vidéo', 'urlImage' => 'images/gaming.png'],
         ]);
 
         // 7. projets
@@ -95,6 +95,20 @@ class PortfolioSeeder extends Seeder
                 'descriptionProjet' => "Un projet qui me suis depuis mes débuts dans le développement web, que j'améliore petit à petit au fur et à mesure que j'acquiert des compétences, ce projet montre l'évolutions de mes compétences. Ce projet est toujours en cours.",
                 'urlProjet'         => 'https://summury.22web.org/',
                 'dateRealisation'   => '2025-10-07'
+            ],
+            [
+                'id'                => 8,
+                'libelleProjet'     => 'Mon CV',
+                'descriptionProjet' => "Mon CV est entièrement fait avec php et une base de données.",
+                'urlProjet'         => 'https://github.com/Titiss77/CV',
+                'dateRealisation'   => '2025-10-07'
+            ],
+            [
+                'id'                => 9,
+                'libelleProjet'     => 'Gestionnaire de ticket',
+                'descriptionProjet' => "J'ai recréé de A à Z un gestionnaire de ticket pour mon club de natation parce que l'hébergement gratuit ne supporte pas GLPI.",
+                'urlProjet'         => 'https://github.com/Titiss77/ticketsPec',
+                'dateRealisation'   => '2025-10-22'
             ]
         ]);
 
