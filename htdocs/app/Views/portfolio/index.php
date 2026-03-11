@@ -37,5 +37,4 @@
             </div>
         </div>
     </section>
-    <div class="light" id="light"></div>
 </div>

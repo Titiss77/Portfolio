@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/contact.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="<?= base_url('assets/js/light.js') ?>"></script>
     <?php if(isset($extra_css)) echo $extra_css; ?>
 </head>
 
