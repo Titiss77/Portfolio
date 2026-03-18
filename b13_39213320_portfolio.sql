@@ -158,14 +158,6 @@ CREATE TABLE IF NOT EXISTS `contact` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `contact` (`id`, `adressIp`, `date`, `sexe`, `nom`, `prenom`, `mail`, `message`) VALUES
-(1, '127.0.0.1', '2025-05-15 00:00:00', 1, 'Mathis', 'fdgdfg', 'mathisfrances11@gmail.com', 'ggrtrt'),
-(2, '127.0.0.1', '2025-05-15 00:00:00', 1, 'Mathis', 'fdgdfg', 'mathisfrances11@gmail.com', 'ggrtrt'),
-(3, '127.0.0.1', '2025-05-15 00:00:00', 1, 'Mathis', 'fdgdfg', 'mathisfrances11@gmail.com', 'trgg'),
-(4, '185.233.130.41', '2026-03-11 00:00:00', 1, '<u>Test de sécurité</u>', '<u>Test de sécurité<', 'test@gmail.com', '<u>Test de sécurité</u>'),
-(5, '185.233.130.41', '2026-03-11 00:00:00', 1, 'echo \"Bonjour Mr \" . $nom;', 'echo \"Bonjour Mr \" .', 'test@gmail.com', 'echo \"Bonjour Mr \" . $nom;'),
-(6, '185.233.130.41', '2026-03-11 00:00:00', 1, 'echo \"Bonjour Mr \" . htmlspecialchars($nom, ENT_QU', 'echo \"Bonjour Mr \" .', 'test@gmail.com', 'echo \"Bonjour Mr \" . htmlspecialchars($nom, ENT_QUOTES, \'UTF-8\');');
-
 -- --------------------------------------------------------
 -- Structure et données de la table `exppro`
 -- --------------------------------------------------------
