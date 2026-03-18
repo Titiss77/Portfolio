@@ -10,6 +10,9 @@ use App\Models\ContactModel;
 use App\Models\CategoriesBloc1Model;
 use App\Models\CompetencesAcocherModel;
 use App\Models\JustificationModel;
+use App\Models\InfoContactModel;
+use App\Models\ExpProModel;
+use App\Models\FormationModel;
 
 class Home extends BaseController
 {
@@ -125,5 +128,25 @@ class Home extends BaseController
         ]);
 
         return redirect()->to('contact')->with('success', 'Votre message a bien été envoyé !');
+    }
+
+    public function cv()
+    {
+        $infoContactModel = new InfoContactModel();
+        $expProModel = new ExpProModel();
+        $formationModel = new FormationModel();
+        $loisirsModel = new LoisirsModel();
+        $lienExternesModel = new LienExternesModel();
+
+        $data = [
+            'contact'     => $infoContactModel->find(1), // id = 1
+            'experiences' => $expProModel->orderBy('id', 'DESC')->findAll(),
+            'formations'  => $formationModel->orderBy('id', 'DESC')->findAll(),
+            'loisirs'     => $loisirsModel->orderBy('idLoisir', 'ASC')->findAll(),
+            'lienExternes' => $lienExternesModel->getOneLink(1),
+        ];
+        
+        // Le CV a sa propre structure HTML entière, on ne charge pas les templates header/footer
+        return view('cv/index', $data);
     }
 }

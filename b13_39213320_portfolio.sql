@@ -176,11 +176,11 @@ CREATE TABLE IF NOT EXISTS `exppro` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `exppro` (`id`, `idPersonne`, `Libelle`, `NomEntreprise`, `Periode`, `Description`, `cheminImg`) VALUES
-(1, 1, 'Agriculture', 'Partag\'emploi', 'Juillet 2021', 'Arrachage des échalottes', './images/partage_emploi.png'),
-(2, 1, 'Agriculture', 'Partag\'emploi', 'Fevrier 2022', 'Mise en terre des échalottes', './images/partage_emploi.png'),
-(3, 1, 'Stage de 2nd', 'Imprimerie', 'Avril 2022', 'Stage de seconde.', './images/imprimante.png'),
-(4, 1, 'SNU', '', 'Juin 2022', 'Service National Universel', './images/snu.png'),
-(5, 1, 'CER France', 'CER France', 'Août 2023', 'Stage dans le secteur du Développemnt Web et la Cybersécurité', './images/cerfrance.png');
+(1, 1, 'Agriculture', 'Partag\'emploi', 'Juillet 2021', 'Arrachage des échalottes', './images/cv/partage_emploi.png'),
+(2, 1, 'Agriculture', 'Partag\'emploi', 'Fevrier 2022', 'Mise en terre des échalottes', './images/cv/partage_emploi.png'),
+(3, 1, 'Stage de 2nd', 'Imprimerie', 'Avril 2022', 'Stage de seconde.', './images/cv/imprimante.png'),
+(4, 1, 'SNU', '', 'Juin 2022', 'Service National Universel', './images/cv/snu.png'),
+(5, 1, 'CER France', 'CER France', 'Août 2023', 'Stage dans le secteur du Développemnt Web et la Cybersécurité', './images/cv/cerfrance.png');
 
 -- --------------------------------------------------------
 -- Structure et données de la table `formation`
@@ -200,9 +200,9 @@ CREATE TABLE IF NOT EXISTS `formation` (
 
 -- Note: idPersonne est corrigé de 0 vers 1 pour permettre la clé étrangère de la première ligne.
 INSERT INTO `formation` (`id`, `idPersonne`, `NomEtablissement`, `Periode`, `Description`, `CheminImg`) VALUES
-(1, 1, 'Collège Auguste Brizeux', '2016 - 2020', 'Obtention du Brevet des Collèges', './images/ecole.png'),
-(2, 1, 'Lycée Auguste Brizeux', '2020 - 2024', 'Obtention du Baccalauréat Général mention assez bien', './images/ecole.png'),
-(3, 1, 'Lycée Jean Chaptal', '2024 - ...', 'Etudes supérieurs', './images/ecole.png');
+(1, 1, 'Collège Auguste Brizeux', '2016 - 2020', 'Obtention du Brevet des Collèges', './images/cv/ecole.png'),
+(2, 1, 'Lycée Auguste Brizeux', '2020 - 2024', 'Obtention du Baccalauréat Général mention assez bien', './images/cv/ecole.png'),
+(3, 1, 'Lycée Jean Chaptal', '2024 - ...', 'Etudes supérieurs', './images/cv/ecole.png');
 
 -- --------------------------------------------------------
 -- Structure et données de la table `infocontact`
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `lienexternes` (
 
 INSERT INTO `lienexternes` (`idLien`, `libelle`, `url`) VALUES
 (1, 'LinkedIn', 'https://www.linkedin.com/in/mathis-frances-lavillauroy-83890a330/'),
-(2, 'CV en ligne', 'https://mathisfcslav-cv.22web.org');
+(2, 'CV en ligne', 'cv/');
 
 -- --------------------------------------------------------
 -- Structure et données de la table `loisirs`

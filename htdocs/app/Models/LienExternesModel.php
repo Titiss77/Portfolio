@@ -6,4 +6,9 @@ class LienExternesModel extends Model
 {
     protected $table = 'lienexternes';
     protected $primaryKey = 'idLien';
+
+    function getOneLink($id)
+    {
+        return $this->where('idLien', $id)->first();
+    }
 }
