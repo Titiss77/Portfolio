@@ -159,10 +159,10 @@ VALUES (
     NULL
   );
 -- --------------------------------------------------------
--- Structure et données de la table `competencesacocher`
+-- Structure et données de la table `competences_a_cocher`
 -- --------------------------------------------------------
-DROP TABLE IF EXISTS `competencesacocher`;
-CREATE TABLE IF NOT EXISTS `competencesacocher` (
+DROP TABLE IF EXISTS `competences_a_cocher`;
+CREATE TABLE IF NOT EXISTS `competences_a_cocher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idCategorie` int(11) NOT NULL,
   `libelle` text NOT NULL,
@@ -171,12 +171,12 @@ CREATE TABLE IF NOT EXISTS `competencesacocher` (
   PRIMARY KEY (`id`),
   KEY `idCategorie` (`idCategorie`),
   KEY `idJustification` (`idJustification`),
-  CONSTRAINT `fk_competencesacocher_categorie` FOREIGN KEY (`idCategorie`) REFERENCES `categories_bloc_1` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_competencesacocher_justification` FOREIGN KEY (`idJustification`) REFERENCES `justification` (`id`) ON DELETE
+  CONSTRAINT `fk_competences_a_cocher_categorie` FOREIGN KEY (`idCategorie`) REFERENCES `categories_bloc_1` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_competences_a_cocher_justification` FOREIGN KEY (`idJustification`) REFERENCES `justification` (`id`) ON DELETE
   SET NULL
 ) ENGINE = InnoDB AUTO_INCREMENT = 23 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 -- Note: Les valeurs `vu` = '' (vides) du dump original ont été corrigées par '0' pour respecter le type Enum strict.
-INSERT INTO `competencesacocher` (
+INSERT INTO `competences_a_cocher` (
     `id`,
     `idCategorie`,
     `libelle`,
@@ -563,50 +563,364 @@ CREATE TABLE articles (
   pub_date DATETIME,
   source VARCHAR(100)
 );
-
-INSERT INTO `articles` (`id`, `title`, `link`, `description`, `pub_date`, `source`) VALUES
-(1, 'Move & Connect s\'associe à KORE pour offrir une connectivité IdO paneuropéenne fluide ...', 'https://www.prnewswire.com/news-releases/move--connect-sassocie-a-kore-pour-offrir-une-connectivite-ido-paneuropeenne-fluide-aux-industries-critiques-302723846.html', 'Move & Connect se asocia con KORE para ofrecer conectividad IoT. KORE Group Holdings, Inc. (NYSE: KORE), el proveedor global de soluciones de Internet ...', '2026-03-24 18:48:23', 'Google Alerts - Internet of Things'),
-(2, 'OpenAI débranche Sora, son outil de génération de vidéos par IA - L\'Éclaireur Fnac', 'https://leclaireur.fnac.com/article/664161-pourquoi-openai-supprime-t-il-sora-son-outil-de-generation-de-videos-par-ia/', 'À lire aussi. Actu. Objets connectés. •. 23 fév. 2026. Le premier appareil connecté d\'OpenAI pourrait prendre la forme d\'une enceinte intelligente.', '2026-03-25 11:57:51', 'Google Alerts - objets connectés'),
-(3, 'Fractus et Verizon parviennent à un accord dans leur litige en matière de brevets.', 'https://www.webdisclosure.com/article/fractus-etr-fractus-et-verizon-parviennent-a-un-accord-dans-leur-litige-en-matiere-de-brevets-ykWoP5aGfC0', '... objets connectés. Ces solutions technologiques permettent aux appareils ... Fractus continue de défendre l\'importance de ses inventions dans l\'évolution ...', '2026-03-25 11:14:42', 'Google Alerts - objets connectés'),
-(4, 'Journal La Terrasse', 'https://www.journal-laterrasse.fr/90421-2/', '... objets connectés… De quoi nourrir – si on le veut ! – une pensée critique, voire politique. Découvrir un art qui renouvelle l\'expérience de ...', '2026-03-25 09:35:34', 'Google Alerts - objets connectés'),
-(5, 'Une bague de paiement pour tous les Français ? Le groupement des cartes bancaires teste ...', 'https://www.clubic.com/actualite-606061-une-bague-de-paiement-pour-tous-les-francais-le-groupement-des-cartes-bancaires-teste-et-approuve-l-idee.html', 'Les résultats, dévoilés ce mercredi 25 mars, confirment une adoption massive et ouvrent la voie à une nouvelle génération d\'objets connectés de ...', '2026-03-25 09:32:37', 'Google Alerts - objets connectés'),
-(6, 'Fibre : le 1 Gb/s devient le nouveau minimum des box internet', 'https://www.freenews.fr/freebox/freebox-ultra/debit-fibre-1-gbps-standard-internet', '... objets connectés. Dans de nombreux foyers, plusieurs appareils consomment simultanément de la bande passante. Téléviseurs, ordinateurs ...', '2026-03-25 09:02:29', 'Google Alerts - objets connectés'),
-(7, 'CB expérimente le paiement sans contact par bague : 75 % des testeurs prêts à l\'adopter', 'https://finyear.com/cb-experimente-le-paiement-sans-contact-par-bague-75-des-testeurs-prets-a-ladopter/', '... objet. Certains testeurs ont même détourné la bague en porte-clés, ouvrant la réflexion sur une gamme plus large d\'objets connectés de paiement.', '2026-03-25 08:42:57', 'Google Alerts - objets connectés'),
-(8, 'Et si votre maison produisait et stockait toute son énergie ? La solution SolarVault 3 arrive', 'https://www.maison-et-domotique.com/168376-jackery-lance-solarvault-3/', 'Jusqu\'à quatre prises connectées peuvent être intégrées pour piloter directement certains appareils énergivores. connexion jackery. Bonne nouvelle ...', '2026-03-25 08:21:57', 'Google Alerts - objets connectés'),
-(9, 'Meilleure vente de Pâques : une licence Office 2021 Pro pour seulement 30 € ! Offre ...', 'https://www.phonandroid.com/meilleure-vente-de-paques-une-licence-office-2021-pro-pour-seulement-30-e-offre-speciale-sur-windows-11-pro-a-12-e.html', 'Objets connectés · Smartphone · Télévision · Tutos · VPN · Cybersécurité · High ... Office 2021 continue ensuite de recevoir les mises à jour de ...', '2026-03-25 08:02:21', 'Google Alerts - objets connectés'),
-(10, 'Un jour LoRa... connectera les flux de télérelève - PressReader', 'https://www.pressreader.com/france/le-regional-de-cosne/20260325/281990384055614', 'En termes simples, il s\'agit de « passerelles pour connecter des objets ». ... objets connectés au stade. L\'une des autorisations sollicitées pour ...', '2026-03-25 06:36:32', 'Google Alerts - objets connectés'),
-(11, 'Ce secret que gardent les fans de bons plans TV : 3 pépites impensables à découvrir sur ... - BFM', 'https://www.bfmtv.com/tech/bons-plans/ce-secret-que-gardent-les-fans-de-bons-plans-tv-3-pepites-impensables-a-decouvrir-sur-electro-depot_AB-202603250023.html', 'Le Wi-Fi et le Bluetooth facilitent la connexion aux accessoires, smartphone, tablette ou ordinateurs. Le son reste en 2x10 W, suffisant pour un usage ...', '2026-03-25 05:42:07', 'Google Alerts - objets connectés'),
-(12, 'Test Nuki Keypad 2 NFC : La révolution Aliro et Apple Wallet s\'invite sur votre porte', 'https://www.domo-blog.fr/test-nuki-keypad-2-nfc-la-revolution-aliro-et-apple-wallet-sinvite-sur-votre-porte/', 'Tests objets connectés. Test Nuki Keypad 2 NFC : La révolution Aliro et Apple Wallet s\'invite sur votre porte ! 24 mars 2026. Aurélien Brunet. 5 min ...', '2026-03-25 05:01:04', 'Google Alerts - objets connectés'),
-(13, 'Oura Ring 5 : Première fuite majeure sur le design et les nouveaux coloris - BlogNT', 'https://www.blog-nouvelles-technologies.fr/363045/oura-ring-5-fuites-design-date-sortie-capteurs-2027/', 'La bague connectée n\'est plus un gadget étrange ; c\'est un objet wearable qui cherche désormais l\'élégance, la discrétion et la précision. Oura semble ...', '2026-03-25 01:23:01', 'Google Alerts - objets connectés'),
-(14, 'Près de la moitié de la capacité Internet internationale désormais exploitée - Tic Maroc', 'https://www.tic-maroc.com/2026/03/pres-de-la-moitie-de-la-capacite.html', '... objets connectés...) qui se répercutent progressivement sur la demande de capacité internationale. A mesure que le réseau évoluera vers une ...', '2026-03-25 00:28:38', 'Google Alerts - objets connectés'),
-(15, 'Wall Street minée par le rebond du pétrole - TradingView', 'https://fr.tradingview.com/news/afp:d53e110df1a88:0/', 'Les routeurs sont les boîtiers dans chaque foyer qui connectent ordinateurs, téléphones et objets connectés à internet. ... Plus de produits.', '2026-03-24 22:28:02', 'Google Alerts - objets connectés'),
-(16, '[#BonPlan] Les promos High-Tech du 25 mars - KultureGeek', 'https://kulturegeek.fr/news-349605/bonplan-promos-high-tech-25-mars-2026', '— Smartphones, accessoires et Objets connectés —. Pour un ... ➡️ Accessoires / objets connectés : Chargeur UGREEN Nexode – 65W, 3 ...', '2026-03-24 22:02:01', 'Google Alerts - objets connectés'),
-(17, 'Delta met fin à la procédure accélérée au Congrès pour la TSA alors que la crise du ... - VisaHQ', 'https://www.visahq.com/fr/news/2026-03-24/us/delta-ends-congressional-fast-track-at-tsa-as-dhs-shutdown-turmoil-grows/', '... Les fouilles électroniques par la CBP augmentent de 17 % ; les objets connectés désormais concernés. mars 24 ...', '2026-03-24 21:19:50', 'Google Alerts - objets connectés'),
-(18, 'Moyen-Orient: Wall Street reste sur la défensive - La Gazette France', 'https://www.lagazettefrance.fr/article/moyen-orient-wall-street-reste-sur-la-defensive', 'Les routeurs sont les boîtiers dans chaque foyer qui connectent ordinateurs, téléphones et objets connectés à internet. Le géant américain des ...', '2026-03-24 20:54:12', 'Google Alerts - objets connectés'),
-(19, 'Microsoft Defender : l\'astuce simple pour le rendre aussi puissant qu\'un antivirus payant', 'https://www.jeuxvideo.com/news/2071151/microsoft-defender-l-astuce-simple-pour-le-rendre-aussi-puissant-qu-un-antivirus-payant.htm', '... objets connectés, les smartphones, les périphériques gaming, les jeux ... Pour aller encore plus loin, rendez-vous dans Sécurité des appareils ...', '2026-03-24 19:32:33', 'Google Alerts - objets connectés'),
-(20, 'DELLA Vario Series 12000 BTU : l\'air conditionné connecté qui vise l\'efficacité énergétique -', 'https://www.planet-sansfil.com/wi-fi/della-vario-series-12000-btu/', 'Un choix cohérent pour les logements sans système centralisé. D\'autres produits de la marque : Aucun produit trouvé. Retrouver tous les articles de ...', '2026-03-24 19:24:35', 'Google Alerts - objets connectés'),
-(21, 'Move & Connect s\'associe à KORE pour offrir une connectivité IdO paneuropéenne fluide ...', 'https://www.lelezard.com/communique-22162173.html', 'KORE Group Holdings, Inc. , l\'hyperscaler mondial de l\'internet des objets (« IdO ») et l\'un des principaux fournisseurs de connectivité IdO, ...', '2026-03-24 19:11:39', 'Google Alerts - objets connectés'),
-(22, 'De smartphone à géant industriel : Xiaomi change d\'échelle - Servicesmobiles.fr', 'https://www.servicesmobiles.fr/de-smartphone-a-geant-industriel-xiaomi-change-dechelle-111042', 'L\'IA et les véhicules électriques boostent la croissance. Succès mondial pour smartphones, IoT et nouveaux segments. Une année de records pour Xiaomi ...', '2026-03-25 11:02:09', 'Google Alerts - IoT'),
-(23, 'INTERA et Radiant Semiconductors s\'allient pour accélérer l\'IA embarquée et les semi-conducteurs', 'https://www.thd.tn/intera-et-radiant-semiconductors-sallient-pour-accelerer-lia-embarquee-et-les-semi-conducteurs/', '... IoT, l\'edge computing et l\'accélération de l\'IA. Annoncée le 23 mars 2026 à Barcelone, cette collaboration vise à combiner les expertises des deux ...', '2026-03-25 09:54:05', 'Google Alerts - IoT'),
-(24, 'Investissements publics et priorités numériques à Hong Kong - Team France Export', 'https://www.teamfrance-export.fr/infos-sectorielles/40408/40408-investissements-publics-et-priorites-numeriques-a-hong-kong', '... IoT représentent un levier central pour la modernisation des infrastructures et des services publics. Dans le cadre du budget 2026‑2027, les ...', '2026-03-25 08:38:25', 'Google Alerts - IoT'),
-(25, 'Synaptics étend Astra Edge AI avec les nouvelles séries SR80 et SRW1500 pour l\'audio ...', 'https://www.ecinews.fr/fr/synaptics-etend-astra-edge-ai-avec-les-nouvelles-series-sr80-et-srw1500-pour-laudio-premium-et-lintelligence-distribuee/', 'De nouveaux microcontrôleurs IA natifs pour l\'audio haut de gamme et les réseaux IoT intelligents Synaptics renforce sa position de leader dans ...', '2026-03-24 22:59:58', 'Google Alerts - IoT'),
-(26, 'Satellites IoT : le chinois Geely vise le marché marocain', 'https://fr.hespress.com/465310-satellites-iot-le-chinois-geely-vise-le-marche-marocain.html', 'Le groupe chinois Zhejiang Geely Holding Group accélère son expansion dans les technologies spatiales en ciblant le Maroc.', '2026-03-24 22:23:56', 'Google Alerts - IoT'),
-(27, 'Identiv signe un accord pour des étiquettes BLE avec IFCO - WIoT Group', 'https://wiot-group.com/think/fr/actualites/identiv-conclut-un-accord-pour-des-etiquettes-ble-avec-ifco/', 'Pour le marché de l\'IoT sans fil, ce partenariat montre que les étiquettes intelligentes BLE gagnent du terrain dans les déploiements à grande échelle ...', '2026-03-24 21:59:44', 'Google Alerts - IoT'),
-(28, 'Cyberattaques : les 14 incidents majeurs du 24 mars 2026', 'https://dcod.ch/2026/03/24/cyberattaques-les-14-incidents-majeurs-du-24-mars-2026/', 'Les derniers articles. Représentation graphique d\'une attaque DDoS par botnets IoT montrant un écran ciblé par un · Botnets IoT : le DoJ démantèle ...', '2026-03-24 19:01:15', 'Google Alerts - IoT'),
-(29, '2025 Annual Report Publication — TradingView News', 'https://www.tradingview.com/news/eqs:cacb30dc3094b:0-2025-annual-report-publication/', 'The Kudelski Group (SIX: KUD.S) is a world leader in core digital security technologies and solutions for media, cybersecurity and IoT. The Group ...', '2026-03-24 17:59:44', 'Google Alerts - IoT'),
-(30, 'La solution iOT indispensable en 2026 : sécurité, supervision et performance des ...', 'https://larevuetech.fr/la-solution-iot-indispensable-en-2026-securite-supervision-et-performance-des-infrastructures-connectees/', 'L\'hyperviseur IoT est un logiciel de supervision centralisée permettant la gestion automatisée des objets connectés, optimisant la sécurité des ...', '2026-03-24 16:08:50', 'Google Alerts - IoT'),
-(31, 'De l\'iot aux champs agricoles : pourquoi la carte sim m2m est devenue indispensable en ...', 'https://larevuetech.fr/de-l-iot-aux-champs-agricoles-pourquoi-la-carte-sim-m2m-est-devenue-indispensable-en-agriculture-moderne/', 'L\'agriculture ne joue plus à l\'ancienne. Oubliez le carnet froissé et le crayon mâchouillé, place à l\'intelligence connectée. Avec l\'iot en ...', '2026-03-24 16:08:47', 'Google Alerts - IoT'),
-(32, 'Botnets IoT : le DoJ démantèle quatre réseaux derrière des DDoS records', 'https://dcod.ch/2026/03/24/doj-botnets-iot-ddos-records/', 'Le DOJ neutralise l\'infrastructure de trois millions d\'objets connectés piratés pour lancer des cyberattaques par DDoS atteignant les 30 terabits ...', '2026-03-24 16:06:17', 'Google Alerts - IoT'),
-(33, 'Vieillissement de la population : la technologie peut-elle sauver notre modèle social ?', 'https://www.journaldunet.com/iot/1548893-vieillissement-de-la-population-la-technologie-peut-elle-sauver-notre-modele-social/', 'Face au vieillissement démographique, la téléassistance et l\'IoT s\'imposent comme des leviers clés. Mais la France reste à la traîne.', '2026-03-24 15:16:47', 'Google Alerts - IoT'),
-(34, 'Électricité : l\'heure d\'une nouvelle ère tarifaire pour redonner du pouvoir aux consommateurs', 'https://www.journaldunet.com/iot/1548831-electricite-l-heure-d-une-nouvelle-ere-tarifaire-pour-redonner-du-pouvoir-aux-consommateurs/', 'IoT. Électricité : l\'heure d\'une nouvelle ère tarifaire pour redonner du pouvoir aux consommateurs. Willy Thao · Chronique de Willy Thao. Frank ...', '2026-03-24 15:16:44', 'Google Alerts - IoT'),
-(35, 'Dictionnaire de l\'IoT', 'https://www.journaldunet.com/web-tech/dictionnaire-de-l-iot/', 'Botnet : Mirai, DDoS… quelles sont les attaques contre l\'IoT ? ... Domotique : quel rôle dans la maison ? Drone : à quel prix et pour quels besoins en ...', '2026-03-24 11:21:27', 'Google Alerts - IoT'),
-(36, 'Fractus et Verizon parviennent à un accord dans leur litige en matière de brevets.', 'http://www.webdisclosure.com/article/fractus-etr-fractus-et-verizon-parviennent-a-un-accord-dans-leur-litige-en-matiere-de-brevets-ykWoP5aGfC0', 'Le litige portait essentiellement sur la technologie d\'antennes brevetée de Fractus, essentielle à la connectivité de l\'Internet des objets (IoT) ...', '2026-03-25 11:14:42', 'Google Alerts - internet des objets'),
-(37, 'Une infrastructure moderne pour une école traditionnelle - Huawei', 'https://www.huawei.com/ch-fr/news/2026/3/ecolint', '... Internet des objets, etc.) ainsi que des appareils privés. Les défis et la recherche d\'un partenaire. En 2016, l\'Ecolint a entrepris de trouver une ...', '2026-03-25 11:02:12', 'Google Alerts - internet des objets'),
-(38, 'PARIS : Supply Chain - 85 % des entreprises investissent dans la technologie pour leurs clients', 'https://presseagence.fr/paris-supply-chain-85-des-entreprises-investissent-dans-la-technologie-pour-leurs-clients/', '... Internet des objets (IoT) ou la robotisation (RPA) s\'ancrent durablement dans les stratégies. « Les organisations ne sont ni dans l\'enthousiasme ...', '2026-03-25 10:47:23', 'Google Alerts - internet des objets'),
-(39, 'L\'UE avertit le Vietnam que les liens commerciaux entre Huawei et ZTE dans le domaine de ...', 'https://www.cryptopolitan.com/fr/eu-vietnam-huawei-zte-business-ties-for-5g/', 'Cette croissance est due à une augmentation de l\'utilisation des smartphones, des voitures, de l\'Internet des objets industriels et des systèmes de ...', '2026-03-24 22:46:34', 'Google Alerts - internet des objets'),
-(40, 'Le groupe Adeo fait confiance à TCS et sa solution OmniStore™ pour réinventer l ...', 'https://www.tcs.com/fr-fr/qui-sommes-nous/newsroom/le-groupe-adeo-fait-confiance-a-tcs-et-sa-solution-omnistore--po', 'Internet des Objets (IoT) · Intelligence Artificielle · TCS Customer Intelligence & Insights™ · TCS ERP Cloud · ignio™ · TCS OmniStore™ · TCS Pace ...', '2026-03-24 22:10:49', 'Google Alerts - internet des objets'),
-(41, 'Le groupe EPM choisit la plateforme SaaS de gestion des services sur le terrain d\'OverIT ...', 'https://www.lelezard.com/communique-22161345.html', ', l\'hyperscaler mondial de l\'internet des objets (« IdO ») et l\'un des principaux fournisseurs de connectivité IdO, annonce aujourd\'hui une ...', '2026-03-24 19:07:44', 'Google Alerts - internet des objets'),
-(42, 'Le groupe Kudelski publie son rapport annuel 2025 - WebDisclosure', 'https://www.webdisclosure.com/article/kudelski-group-etr-le-groupe-kudelski-publie-son-rapport-annuel-2025-q6DnncnqCsX', 'Reconnu pour son expertise dans les médias, la cybersécurité et l\'Internet des objets ... You\'ll have access to summary articles written by us and ...', '2026-03-24 16:51:58', 'Google Alerts - internet des objets'),
-(43, 'KORE Group Holdings, Inc. et Move & Connect scellent une alliance stratégique pour la ... - Bourse', 'https://ch.zonebourse.com/actualite-bourse/kore-group-holdings-inc-et-move-connect-scellent-une-alliance-strategique-pour-la-connectivite-i-ce7e5eddd088fe24', '... IoT spécialisé dans la connectivité gérée... -Le 24 mars 2026 à 13 ... Internet des objets. Palmarès. Palmarès Cotations. Variations Court Terme ...', '2026-03-24 13:08:42', 'Google Alerts - internet des objets'),
-(44, 'Adsp Mtcs remporte l\'appel d\'offres pour le développement de l\'infrastructure DAS 5G - La Milano', 'https://lamilano.it/fr/par-les-m%C3%A9dias/ADSP-MTCS-remporte-l%27appel-d%27offres-pour-le-d%C3%A9veloppement-de-l%27infrastructure-DAS-5G/', '... Internet des objets (IoT) et à la gestion intelligente des flux. Le choix technologique retenu assure également la grande résilience de l ...', '2026-03-24 11:07:55', 'Google Alerts - internet des objets');
+INSERT INTO `articles` (
+    `id`,
+    `title`,
+    `link`,
+    `description`,
+    `pub_date`,
+    `source`
+  )
+VALUES (
+    1,
+    'Move & Connect s\'associe à KORE pour offrir une connectivité IdO paneuropéenne fluide ...',
+    'https://www.prnewswire.com/news-releases/move--connect-sassocie-a-kore-pour-offrir-une-connectivite-ido-paneuropeenne-fluide-aux-industries-critiques-302723846.html',
+    'Move & Connect se asocia con KORE para ofrecer conectividad IoT. KORE Group Holdings, Inc. (NYSE: KORE), el proveedor global de soluciones de Internet ...',
+    '2026-03-24 18:48:23',
+    'Google Alerts - Internet of Things'
+  ),
+  (
+    2,
+    'OpenAI débranche Sora, son outil de génération de vidéos par IA - L\'Éclaireur Fnac',
+    'https://leclaireur.fnac.com/article/664161-pourquoi-openai-supprime-t-il-sora-son-outil-de-generation-de-videos-par-ia/',
+    'À lire aussi. Actu. Objets connectés. •. 23 fév. 2026. Le premier appareil connecté d\'OpenAI pourrait prendre la forme d\'une enceinte intelligente.',
+    '2026-03-25 11:57:51',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    3,
+    'Fractus et Verizon parviennent à un accord dans leur litige en matière de brevets.',
+    'https://www.webdisclosure.com/article/fractus-etr-fractus-et-verizon-parviennent-a-un-accord-dans-leur-litige-en-matiere-de-brevets-ykWoP5aGfC0',
+    '... objets connectés. Ces solutions technologiques permettent aux appareils ... Fractus continue de défendre l\'importance de ses inventions dans l\'évolution ...',
+    '2026-03-25 11:14:42',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    4,
+    'Journal La Terrasse',
+    'https://www.journal-laterrasse.fr/90421-2/',
+    '... objets connectés… De quoi nourrir – si on le veut ! – une pensée critique, voire politique. Découvrir un art qui renouvelle l\'expérience de ...',
+    '2026-03-25 09:35:34',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    5,
+    'Une bague de paiement pour tous les Français ? Le groupement des cartes bancaires teste ...',
+    'https://www.clubic.com/actualite-606061-une-bague-de-paiement-pour-tous-les-francais-le-groupement-des-cartes-bancaires-teste-et-approuve-l-idee.html',
+    'Les résultats, dévoilés ce mercredi 25 mars, confirment une adoption massive et ouvrent la voie à une nouvelle génération d\'objets connectés de ...',
+    '2026-03-25 09:32:37',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    6,
+    'Fibre : le 1 Gb/s devient le nouveau minimum des box internet',
+    'https://www.freenews.fr/freebox/freebox-ultra/debit-fibre-1-gbps-standard-internet',
+    '... objets connectés. Dans de nombreux foyers, plusieurs appareils consomment simultanément de la bande passante. Téléviseurs, ordinateurs ...',
+    '2026-03-25 09:02:29',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    7,
+    'CB expérimente le paiement sans contact par bague : 75 % des testeurs prêts à l\'adopter',
+    'https://finyear.com/cb-experimente-le-paiement-sans-contact-par-bague-75-des-testeurs-prets-a-ladopter/',
+    '... objet. Certains testeurs ont même détourné la bague en porte-clés, ouvrant la réflexion sur une gamme plus large d\'objets connectés de paiement.',
+    '2026-03-25 08:42:57',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    8,
+    'Et si votre maison produisait et stockait toute son énergie ? La solution SolarVault 3 arrive',
+    'https://www.maison-et-domotique.com/168376-jackery-lance-solarvault-3/',
+    'Jusqu\'à quatre prises connectées peuvent être intégrées pour piloter directement certains appareils énergivores. connexion jackery. Bonne nouvelle ...',
+    '2026-03-25 08:21:57',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    9,
+    'Meilleure vente de Pâques : une licence Office 2021 Pro pour seulement 30 € ! Offre ...',
+    'https://www.phonandroid.com/meilleure-vente-de-paques-une-licence-office-2021-pro-pour-seulement-30-e-offre-speciale-sur-windows-11-pro-a-12-e.html',
+    'Objets connectés · Smartphone · Télévision · Tutos · VPN · Cybersécurité · High ... Office 2021 continue ensuite de recevoir les mises à jour de ...',
+    '2026-03-25 08:02:21',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    10,
+    'Un jour LoRa... connectera les flux de télérelève - PressReader',
+    'https://www.pressreader.com/france/le-regional-de-cosne/20260325/281990384055614',
+    'En termes simples, il s\'agit de « passerelles pour connecter des objets ». ... objets connectés au stade. L\'une des autorisations sollicitées pour ...',
+    '2026-03-25 06:36:32',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    11,
+    'Ce secret que gardent les fans de bons plans TV : 3 pépites impensables à découvrir sur ... - BFM',
+    'https://www.bfmtv.com/tech/bons-plans/ce-secret-que-gardent-les-fans-de-bons-plans-tv-3-pepites-impensables-a-decouvrir-sur-electro-depot_AB-202603250023.html',
+    'Le Wi-Fi et le Bluetooth facilitent la connexion aux accessoires, smartphone, tablette ou ordinateurs. Le son reste en 2x10 W, suffisant pour un usage ...',
+    '2026-03-25 05:42:07',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    12,
+    'Test Nuki Keypad 2 NFC : La révolution Aliro et Apple Wallet s\'invite sur votre porte',
+    'https://www.domo-blog.fr/test-nuki-keypad-2-nfc-la-revolution-aliro-et-apple-wallet-sinvite-sur-votre-porte/',
+    'Tests objets connectés. Test Nuki Keypad 2 NFC : La révolution Aliro et Apple Wallet s\'invite sur votre porte ! 24 mars 2026. Aurélien Brunet. 5 min ...',
+    '2026-03-25 05:01:04',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    13,
+    'Oura Ring 5 : Première fuite majeure sur le design et les nouveaux coloris - BlogNT',
+    'https://www.blog-nouvelles-technologies.fr/363045/oura-ring-5-fuites-design-date-sortie-capteurs-2027/',
+    'La bague connectée n\'est plus un gadget étrange ; c\'est un objet wearable qui cherche désormais l\'élégance, la discrétion et la précision. Oura semble ...',
+    '2026-03-25 01:23:01',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    14,
+    'Près de la moitié de la capacité Internet internationale désormais exploitée - Tic Maroc',
+    'https://www.tic-maroc.com/2026/03/pres-de-la-moitie-de-la-capacite.html',
+    '... objets connectés...) qui se répercutent progressivement sur la demande de capacité internationale. A mesure que le réseau évoluera vers une ...',
+    '2026-03-25 00:28:38',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    15,
+    'Wall Street minée par le rebond du pétrole - TradingView',
+    'https://fr.tradingview.com/news/afp:d53e110df1a88:0/',
+    'Les routeurs sont les boîtiers dans chaque foyer qui connectent ordinateurs, téléphones et objets connectés à internet. ... Plus de produits.',
+    '2026-03-24 22:28:02',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    16,
+    '[#BonPlan] Les promos High-Tech du 25 mars - KultureGeek',
+    'https://kulturegeek.fr/news-349605/bonplan-promos-high-tech-25-mars-2026',
+    '— Smartphones, accessoires et Objets connectés —. Pour un ... ➡️ Accessoires / objets connectés : Chargeur UGREEN Nexode – 65W, 3 ...',
+    '2026-03-24 22:02:01',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    17,
+    'Delta met fin à la procédure accélérée au Congrès pour la TSA alors que la crise du ... - VisaHQ',
+    'https://www.visahq.com/fr/news/2026-03-24/us/delta-ends-congressional-fast-track-at-tsa-as-dhs-shutdown-turmoil-grows/',
+    '... Les fouilles électroniques par la CBP augmentent de 17 % ; les objets connectés désormais concernés. mars 24 ...',
+    '2026-03-24 21:19:50',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    18,
+    'Moyen-Orient: Wall Street reste sur la défensive - La Gazette France',
+    'https://www.lagazettefrance.fr/article/moyen-orient-wall-street-reste-sur-la-defensive',
+    'Les routeurs sont les boîtiers dans chaque foyer qui connectent ordinateurs, téléphones et objets connectés à internet. Le géant américain des ...',
+    '2026-03-24 20:54:12',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    19,
+    'Microsoft Defender : l\'astuce simple pour le rendre aussi puissant qu\'un antivirus payant',
+    'https://www.jeuxvideo.com/news/2071151/microsoft-defender-l-astuce-simple-pour-le-rendre-aussi-puissant-qu-un-antivirus-payant.htm',
+    '... objets connectés, les smartphones, les périphériques gaming, les jeux ... Pour aller encore plus loin, rendez-vous dans Sécurité des appareils ...',
+    '2026-03-24 19:32:33',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    20,
+    'DELLA Vario Series 12000 BTU : l\'air conditionné connecté qui vise l\'efficacité énergétique -',
+    'https://www.planet-sansfil.com/wi-fi/della-vario-series-12000-btu/',
+    'Un choix cohérent pour les logements sans système centralisé. D\'autres produits de la marque : Aucun produit trouvé. Retrouver tous les articles de ...',
+    '2026-03-24 19:24:35',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    21,
+    'Move & Connect s\'associe à KORE pour offrir une connectivité IdO paneuropéenne fluide ...',
+    'https://www.lelezard.com/communique-22162173.html',
+    'KORE Group Holdings, Inc. , l\'hyperscaler mondial de l\'internet des objets (« IdO ») et l\'un des principaux fournisseurs de connectivité IdO, ...',
+    '2026-03-24 19:11:39',
+    'Google Alerts - objets connectés'
+  ),
+  (
+    22,
+    'De smartphone à géant industriel : Xiaomi change d\'échelle - Servicesmobiles.fr',
+    'https://www.servicesmobiles.fr/de-smartphone-a-geant-industriel-xiaomi-change-dechelle-111042',
+    'L\'IA et les véhicules électriques boostent la croissance. Succès mondial pour smartphones, IoT et nouveaux segments. Une année de records pour Xiaomi ...',
+    '2026-03-25 11:02:09',
+    'Google Alerts - IoT'
+  ),
+  (
+    23,
+    'INTERA et Radiant Semiconductors s\'allient pour accélérer l\'IA embarquée et les semi-conducteurs',
+    'https://www.thd.tn/intera-et-radiant-semiconductors-sallient-pour-accelerer-lia-embarquee-et-les-semi-conducteurs/',
+    '... IoT, l\'edge computing et l\'accélération de l\'IA. Annoncée le 23 mars 2026 à Barcelone, cette collaboration vise à combiner les expertises des deux ...',
+    '2026-03-25 09:54:05',
+    'Google Alerts - IoT'
+  ),
+  (
+    24,
+    'Investissements publics et priorités numériques à Hong Kong - Team France Export',
+    'https://www.teamfrance-export.fr/infos-sectorielles/40408/40408-investissements-publics-et-priorites-numeriques-a-hong-kong',
+    '... IoT représentent un levier central pour la modernisation des infrastructures et des services publics. Dans le cadre du budget 2026‑2027, les ...',
+    '2026-03-25 08:38:25',
+    'Google Alerts - IoT'
+  ),
+  (
+    25,
+    'Synaptics étend Astra Edge AI avec les nouvelles séries SR80 et SRW1500 pour l\'audio ...',
+    'https://www.ecinews.fr/fr/synaptics-etend-astra-edge-ai-avec-les-nouvelles-series-sr80-et-srw1500-pour-laudio-premium-et-lintelligence-distribuee/',
+    'De nouveaux microcontrôleurs IA natifs pour l\'audio haut de gamme et les réseaux IoT intelligents Synaptics renforce sa position de leader dans ...',
+    '2026-03-24 22:59:58',
+    'Google Alerts - IoT'
+  ),
+  (
+    26,
+    'Satellites IoT : le chinois Geely vise le marché marocain',
+    'https://fr.hespress.com/465310-satellites-iot-le-chinois-geely-vise-le-marche-marocain.html',
+    'Le groupe chinois Zhejiang Geely Holding Group accélère son expansion dans les technologies spatiales en ciblant le Maroc.',
+    '2026-03-24 22:23:56',
+    'Google Alerts - IoT'
+  ),
+  (
+    27,
+    'Identiv signe un accord pour des étiquettes BLE avec IFCO - WIoT Group',
+    'https://wiot-group.com/think/fr/actualites/identiv-conclut-un-accord-pour-des-etiquettes-ble-avec-ifco/',
+    'Pour le marché de l\'IoT sans fil, ce partenariat montre que les étiquettes intelligentes BLE gagnent du terrain dans les déploiements à grande échelle ...',
+    '2026-03-24 21:59:44',
+    'Google Alerts - IoT'
+  ),
+  (
+    28,
+    'Cyberattaques : les 14 incidents majeurs du 24 mars 2026',
+    'https://dcod.ch/2026/03/24/cyberattaques-les-14-incidents-majeurs-du-24-mars-2026/',
+    'Les derniers articles. Représentation graphique d\'une attaque DDoS par botnets IoT montrant un écran ciblé par un · Botnets IoT : le DoJ démantèle ...',
+    '2026-03-24 19:01:15',
+    'Google Alerts - IoT'
+  ),
+  (
+    29,
+    '2025 Annual Report Publication — TradingView News',
+    'https://www.tradingview.com/news/eqs:cacb30dc3094b:0-2025-annual-report-publication/',
+    'The Kudelski Group (SIX: KUD.S) is a world leader in core digital security technologies and solutions for media, cybersecurity and IoT. The Group ...',
+    '2026-03-24 17:59:44',
+    'Google Alerts - IoT'
+  ),
+  (
+    30,
+    'La solution iOT indispensable en 2026 : sécurité, supervision et performance des ...',
+    'https://larevuetech.fr/la-solution-iot-indispensable-en-2026-securite-supervision-et-performance-des-infrastructures-connectees/',
+    'L\'hyperviseur IoT est un logiciel de supervision centralisée permettant la gestion automatisée des objets connectés, optimisant la sécurité des ...',
+    '2026-03-24 16:08:50',
+    'Google Alerts - IoT'
+  ),
+  (
+    31,
+    'De l\'iot aux champs agricoles : pourquoi la carte sim m2m est devenue indispensable en ...',
+    'https://larevuetech.fr/de-l-iot-aux-champs-agricoles-pourquoi-la-carte-sim-m2m-est-devenue-indispensable-en-agriculture-moderne/',
+    'L\'agriculture ne joue plus à l\'ancienne. Oubliez le carnet froissé et le crayon mâchouillé, place à l\'intelligence connectée. Avec l\'iot en ...',
+    '2026-03-24 16:08:47',
+    'Google Alerts - IoT'
+  ),
+  (
+    32,
+    'Botnets IoT : le DoJ démantèle quatre réseaux derrière des DDoS records',
+    'https://dcod.ch/2026/03/24/doj-botnets-iot-ddos-records/',
+    'Le DOJ neutralise l\'infrastructure de trois millions d\'objets connectés piratés pour lancer des cyberattaques par DDoS atteignant les 30 terabits ...',
+    '2026-03-24 16:06:17',
+    'Google Alerts - IoT'
+  ),
+  (
+    33,
+    'Vieillissement de la population : la technologie peut-elle sauver notre modèle social ?',
+    'https://www.journaldunet.com/iot/1548893-vieillissement-de-la-population-la-technologie-peut-elle-sauver-notre-modele-social/',
+    'Face au vieillissement démographique, la téléassistance et l\'IoT s\'imposent comme des leviers clés. Mais la France reste à la traîne.',
+    '2026-03-24 15:16:47',
+    'Google Alerts - IoT'
+  ),
+  (
+    34,
+    'Électricité : l\'heure d\'une nouvelle ère tarifaire pour redonner du pouvoir aux consommateurs',
+    'https://www.journaldunet.com/iot/1548831-electricite-l-heure-d-une-nouvelle-ere-tarifaire-pour-redonner-du-pouvoir-aux-consommateurs/',
+    'IoT. Électricité : l\'heure d\'une nouvelle ère tarifaire pour redonner du pouvoir aux consommateurs. Willy Thao · Chronique de Willy Thao. Frank ...',
+    '2026-03-24 15:16:44',
+    'Google Alerts - IoT'
+  ),
+  (
+    35,
+    'Dictionnaire de l\'IoT',
+    'https://www.journaldunet.com/web-tech/dictionnaire-de-l-iot/',
+    'Botnet : Mirai, DDoS… quelles sont les attaques contre l\'IoT ? ... Domotique : quel rôle dans la maison ? Drone : à quel prix et pour quels besoins en ...',
+    '2026-03-24 11:21:27',
+    'Google Alerts - IoT'
+  ),
+  (
+    36,
+    'Fractus et Verizon parviennent à un accord dans leur litige en matière de brevets.',
+    'http://www.webdisclosure.com/article/fractus-etr-fractus-et-verizon-parviennent-a-un-accord-dans-leur-litige-en-matiere-de-brevets-ykWoP5aGfC0',
+    'Le litige portait essentiellement sur la technologie d\'antennes brevetée de Fractus, essentielle à la connectivité de l\'Internet des objets (IoT) ...',
+    '2026-03-25 11:14:42',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    37,
+    'Une infrastructure moderne pour une école traditionnelle - Huawei',
+    'https://www.huawei.com/ch-fr/news/2026/3/ecolint',
+    '... Internet des objets, etc.) ainsi que des appareils privés. Les défis et la recherche d\'un partenaire. En 2016, l\'Ecolint a entrepris de trouver une ...',
+    '2026-03-25 11:02:12',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    38,
+    'PARIS : Supply Chain - 85 % des entreprises investissent dans la technologie pour leurs clients',
+    'https://presseagence.fr/paris-supply-chain-85-des-entreprises-investissent-dans-la-technologie-pour-leurs-clients/',
+    '... Internet des objets (IoT) ou la robotisation (RPA) s\'ancrent durablement dans les stratégies. « Les organisations ne sont ni dans l\'enthousiasme ...',
+    '2026-03-25 10:47:23',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    39,
+    'L\'UE avertit le Vietnam que les liens commerciaux entre Huawei et ZTE dans le domaine de ...',
+    'https://www.cryptopolitan.com/fr/eu-vietnam-huawei-zte-business-ties-for-5g/',
+    'Cette croissance est due à une augmentation de l\'utilisation des smartphones, des voitures, de l\'Internet des objets industriels et des systèmes de ...',
+    '2026-03-24 22:46:34',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    40,
+    'Le groupe Adeo fait confiance à TCS et sa solution OmniStore™ pour réinventer l ...',
+    'https://www.tcs.com/fr-fr/qui-sommes-nous/newsroom/le-groupe-adeo-fait-confiance-a-tcs-et-sa-solution-omnistore--po',
+    'Internet des Objets (IoT) · Intelligence Artificielle · TCS Customer Intelligence & Insights™ · TCS ERP Cloud · ignio™ · TCS OmniStore™ · TCS Pace ...',
+    '2026-03-24 22:10:49',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    41,
+    'Le groupe EPM choisit la plateforme SaaS de gestion des services sur le terrain d\'OverIT ...',
+    'https://www.lelezard.com/communique-22161345.html',
+    ', l\'hyperscaler mondial de l\'internet des objets (« IdO ») et l\'un des principaux fournisseurs de connectivité IdO, annonce aujourd\'hui une ...',
+    '2026-03-24 19:07:44',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    42,
+    'Le groupe Kudelski publie son rapport annuel 2025 - WebDisclosure',
+    'https://www.webdisclosure.com/article/kudelski-group-etr-le-groupe-kudelski-publie-son-rapport-annuel-2025-q6DnncnqCsX',
+    'Reconnu pour son expertise dans les médias, la cybersécurité et l\'Internet des objets ... You\'ll have access to summary articles written by us and ...',
+    '2026-03-24 16:51:58',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    43,
+    'KORE Group Holdings, Inc. et Move & Connect scellent une alliance stratégique pour la ... - Bourse',
+    'https://ch.zonebourse.com/actualite-bourse/kore-group-holdings-inc-et-move-connect-scellent-une-alliance-strategique-pour-la-connectivite-i-ce7e5eddd088fe24',
+    '... IoT spécialisé dans la connectivité gérée... -Le 24 mars 2026 à 13 ... Internet des objets. Palmarès. Palmarès Cotations. Variations Court Terme ...',
+    '2026-03-24 13:08:42',
+    'Google Alerts - internet des objets'
+  ),
+  (
+    44,
+    'Adsp Mtcs remporte l\'appel d\'offres pour le développement de l\'infrastructure DAS 5G - La Milano',
+    'https://lamilano.it/fr/par-les-m%C3%A9dias/ADSP-MTCS-remporte-l%27appel-d%27offres-pour-le-d%C3%A9veloppement-de-l%27infrastructure-DAS-5G/',
+    '... Internet des objets (IoT) et à la gestion intelligente des flux. Le choix technologique retenu assure également la grande résilience de l ...',
+    '2026-03-24 11:07:55',
+    'Google Alerts - internet des objets'
+  );
 COMMIT;
