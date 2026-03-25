@@ -78,7 +78,7 @@
         <?php foreach ($formations as $form): ?>
         <div class="exp">
             <div class="exp-logo">
-                <a href="#"><img src="<?= base_url(esc($form['CheminImg'])) ?>" alt="Logo école"></a>
+                <a href="#"><img src="<?= base_url(esc($form['chemin_image'])) ?>" alt="Logo école"></a>
             </div>
             <div class="exp-info">
                 <h3 class="nom_etablissement"><?= esc($form['nom_etablissement']) ?></h3>

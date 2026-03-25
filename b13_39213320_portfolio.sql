@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `formation` (
   `nom_etablissement` varchar(100) NOT NULL,
   `periode` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  `CheminImg` varchar(255) NOT NULL DEFAULT './images/ecole.png',
+  `chemin_image` varchar(255) NOT NULL DEFAULT './images/ecole.png',
   PRIMARY KEY (`id`),
   KEY `fk_formation_personne` (`id_personne`),
   CONSTRAINT `fk_formation_personne` FOREIGN KEY (`id_personne`) REFERENCES `infos_generales` (`id_personne`) ON DELETE CASCADE
@@ -434,7 +434,7 @@ INSERT INTO `formation` (
     `nom_etablissement`,
     `periode`,
     `description`,
-    `CheminImg`
+    `chemin_image`
   )
 VALUES (
     1,
