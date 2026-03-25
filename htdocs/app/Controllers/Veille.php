@@ -115,7 +115,7 @@ class Veille extends BaseController
         }
 
         // --- AFFICHAGE DU RÉSULTAT ET DES ERREURS ---
-        echo "<h3>Mise à jour terminée : {$nouveauxArticles} nouveaux articles ajoutés.</h3>";
+        echo "<h3>Mise à jour terminée : {$nouveauxArticles} nouveaux articles ajoutés.</h3>\n<button onclick=\"location.href='../veille'\">Retour à la page de veille</button>";
 
         if (!empty($erreurs)) {
             echo "<h4>Attention, certaines sources n'ont pas pu être lues :</h4><ul>";

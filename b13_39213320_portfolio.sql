@@ -2,18 +2,13 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
-;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
-;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
-;
-/*!40101 SET NAMES utf8mb4 */
-;
+
 CREATE DATABASE IF NOT EXISTS `b32_41412376_portfolio` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `b32_41412376_portfolio`;
 -- Désactivation temporaire des vérifications de clés étrangères pour pouvoir écraser et recréer les tables proprement
 SET FOREIGN_KEY_CHECKS = 0;
+
+
 -- --------------------------------------------------------
 -- Structure et données de la table `personnelle`
 -- --------------------------------------------------------
@@ -562,34 +557,8 @@ VALUES (
     'https://github.com/Titiss77/ticketsPec',
     '2025-10-22'
   );
--- --------------------------------------------------------
--- Structure et données de la table `themes`
--- --------------------------------------------------------
-DROP TABLE IF EXISTS `themes`;
-CREATE TABLE IF NOT EXISTS `themes` (
-  `varName` varchar(50) NOT NULL,
-  `varValue` varchar(70) NOT NULL,
-  PRIMARY KEY (`varName`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `themes` (`varName`, `varValue`)
-VALUES ('--bg-body', '#e0e0e0'),
-  ('--bg-h-f', '#d4d4d4'),
-  ('--color-text', '#4d4d4d'),
-  ('--color-border', 'none'),
-  ('--couleur-font-anime', '#00f7ff00'),
-  ('--couleur-false', '#a02121'),
-  ('--couleur-btn-anime', '#6c93d2'),
-  ('--couleur-btn-film', 'rgb(37, 115, 66)'),
-  ('--couleur-btn-serie', 'rgb(109, 67, 152);'),
-  ('--couleur-btn-scan', '#626874'),
-  ('--couleur-btn-all', 'rgb(145, 60, 63)'),
-  ('--box-shadow', '2px 2px 20px 0px #555555'),
-  (
-    '--box-shadow-hover',
-    '7px 7px 7px 0px #00000069'
-  ),
-  ('--border-radius', '1rem');
-SET FOREIGN_KEY_CHECKS = 1;
+
+
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE articles (
   id INT AUTO_INCREMENT PRIMARY KEY,

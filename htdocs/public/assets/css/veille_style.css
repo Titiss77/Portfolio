@@ -1,5 +1,6 @@
 .veille{
     padding-top: 100px;
+    text-align: center;
 }
 
 h1 {
@@ -76,4 +77,19 @@ h1 {
     color: #555;
     flex-grow: 1;
     /* Pousse la description pour combler le vide si les cartes ont des hauteurs différentes */
+}
+
+.btn_maj{
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 20px;
+}
+
+.btn_maj:hover {
+    background-color: #2980b9;
 }

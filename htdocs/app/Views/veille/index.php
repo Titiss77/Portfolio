@@ -4,9 +4,8 @@
 
 <div class="veille">
     <h1>📡 L'internet des objets - IoT</h1>
-
-    <?php if (!empty($articles) && is_array($articles)): ?>
-    <div class="articles-grid">
+    <button class="btn_maj" onclick="location.href='veille/fetch_rss'">Mettre à jour</button>
+    <?php if (!empty($articles) && is_array($articles)): ?> <div class=" articles-grid">
         <?php foreach ($articles as $article): ?>
         <div class="article-card">
             <h2>
@@ -24,9 +23,6 @@
         </div>
         <?php endforeach; ?>
     </div>
-    <?php else: ?>
-    <p style="text-align:center;">Aucun article dans la base de données. Avez-vous exécuté la route /veille/fetch_rss ?
-    </p>
     <?php endif; ?>
 </div>
 
