@@ -17,6 +17,7 @@
             <li><a href="<?= base_url('/') ?>" class="acceuil">Accueil</a></li>
             <li><a href="<?= base_url('tableau') ?>" class="h-tableau">Compétences</a></li>
             <li><a href="<?= base_url('projets') ?>" class="projets">Projets</a></li>
+            <li><a href="<?= base_url('veille') ?>" class="veille">Ma Veille</a></li>
             <li><a href="<?= base_url('contact') ?>" class="contact">Contacts</a></li>
         </ul>
     </header>
