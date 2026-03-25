@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS `infos_generales` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `etudes` varchar(100) NOT NULL,
-  `dateDeNaissance` date NOT NULL,
+  `date_de_naissance` date NOT NULL,
   `localisation` varchar(100) NOT NULL,
-  `meConcernant` text NOT NULL,
+  `me_concernant` text NOT NULL,
   PRIMARY KEY (`id_personne`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 INSERT INTO `infos_generales` (
@@ -27,9 +27,9 @@ INSERT INTO `infos_generales` (
     `nom`,
     `prenom`,
     `etudes`,
-    `dateDeNaissance`,
+    `date_de_naissance`,
     `localisation`,
-    `meConcernant`
+    `me_concernant`
   )
 VALUES (
     1,
@@ -105,10 +105,10 @@ DROP TABLE IF EXISTS `justification`;
 CREATE TABLE IF NOT EXISTS `justification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `justification` text NOT NULL,
-  `imgUrl` varchar(255) DEFAULT NULL,
+  `chemin_image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 12 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `justification` (`id`, `justification`, `imgUrl`)
+INSERT INTO `justification` (`id`, `justification`, `chemin_image`)
 VALUES (
     1,
     'Ne vous inquiétez pas, la justification est en cours de développement.',
@@ -494,12 +494,12 @@ VALUES (
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `liens_externes`;
 CREATE TABLE IF NOT EXISTS `liens_externes` (
-  `idLien` int(11) NOT NULL AUTO_INCREMENT,
+  `id_lien` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(100) NOT NULL,
   `url` varchar(255) NOT NULL,
-  PRIMARY KEY (`idLien`)
+  PRIMARY KEY (`id_lien`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `liens_externes` (`idLien`, `libelle`, `url`)
+INSERT INTO `liens_externes` (`id_lien`, `libelle`, `url`)
 VALUES (
     1,
     'LinkedIn',
@@ -513,10 +513,10 @@ DROP TABLE IF EXISTS `loisirs`;
 CREATE TABLE IF NOT EXISTS `loisirs` (
   `idLoisir` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(100) NOT NULL,
-  `urlImage` varchar(255) NOT NULL,
+  `chemin_image` varchar(255) NOT NULL,
   PRIMARY KEY (`idLoisir`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `loisirs` (`idLoisir`, `libelle`, `urlImage`)
+INSERT INTO `loisirs` (`idLoisir`, `libelle`, `chemin_image`)
 VALUES (1, 'Natation', 'images/natation.png'),
   (2, 'Coder', 'images/coder.png'),
   (3, 'Jeux Vidéo', 'images/gaming.png');
@@ -526,18 +526,18 @@ VALUES (1, 'Natation', 'images/natation.png'),
 DROP TABLE IF EXISTS `projets`;
 CREATE TABLE IF NOT EXISTS `projets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `libelleProjet` varchar(255) NOT NULL,
-  `descriptionProjet` text NOT NULL,
-  `urlProjet` varchar(255) NOT NULL,
-  `dateRealisation` date NOT NULL,
+  `libelle` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `lien` varchar(255) NOT NULL,
+  `date_realisation` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 INSERT INTO `projets` (
     `id`,
-    `libelleProjet`,
-    `descriptionProjet`,
-    `urlProjet`,
-    `dateRealisation`
+    `libelle`,
+    `description`,
+    `lien`,
+    `date_realisation`
   )
 VALUES (
     1,

@@ -143,7 +143,7 @@
         <h2>Centres d'intérêt</h2>
         <?php foreach ($loisirs as $loisir): ?>
         <figure class="interet">
-            <img src="<?= base_url(esc($loisir['urlImage'])) ?>" alt="<?= esc($loisir['libelle']) ?>">
+            <img src="<?= base_url(esc($loisir['chemin_image'])) ?>" alt="<?= esc($loisir['libelle']) ?>">
             <figcaption><?= esc($loisir['libelle']) ?></figcaption>
         </figure>
         <?php endforeach; ?>

@@ -71,11 +71,11 @@
                 <?php if ($comp['vu'] === '1' && $comp['justification_data']): ?>
                 <?php
                 $justification = nl2br(htmlspecialchars($comp['justification_data']['justification'], ENT_QUOTES));
-                $imgUrl = $comp['justification_data']['imgUrl'] ? base_url(esc($comp['justification_data']['imgUrl'])) : '';
+                $chemin_image = $comp['justification_data']['chemin_image'] ? base_url(esc($comp['justification_data']['chemin_image'])) : '';
                 ?>
                 <td>
                     <button class='btn-justification' data-justification="<?= $justification ?>"
-                        data-img="<?= $imgUrl ?>">X</button>
+                        data-img="<?= $chemin_image ?>">X</button>
                 </td>
                 <?php else: ?>
                 <td></td>
@@ -98,13 +98,13 @@
 document.querySelectorAll('.btn-justification').forEach(btn => {
     btn.addEventListener('click', () => {
         const justification = btn.getAttribute('data-justification');
-        const imgUrl = btn.getAttribute('data-img');
+        const chemin_image = btn.getAttribute('data-img');
 
         document.getElementById('justification-text').innerHTML = justification;
         const imgEl = document.getElementById('justification-img');
 
-        if (imgUrl) {
-            imgEl.src = imgUrl;
+        if (chemin_image) {
+            imgEl.src = chemin_image;
             imgEl.style.display = 'block';
         } else {
             imgEl.style.display = 'none';

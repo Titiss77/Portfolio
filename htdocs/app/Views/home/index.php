@@ -18,7 +18,7 @@
 
         <div class="div_age">
             <p class="entete">Âge</p>
-            <p id="info"><?= calculate_age($personne['dateDeNaissance']) ?> ans</p>
+            <p id="info"><?= calculate_age($personne['date_de_naissance']) ?> ans</p>
         </div>
 
         <div class="div_loca">
@@ -30,7 +30,7 @@
     <section class="autre">
         <div class="expertise" id="expertise">
             <p class="entete2">Me concernant</p>
-            <p class="perso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= nl2br(esc($personne['meConcernant'])) ?></p>
+            <p class="perso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= nl2br(esc($personne['me_concernant'])) ?></p>
             <div class="container"></div>
         </div>
         <div class="divLoisir">
@@ -38,7 +38,7 @@
             <div class="loisir">
                 <?php foreach ($loisirs as $loisir): ?>
                 <figure class="interet">
-                    <img src="<?= base_url(esc($loisir['urlImage'])) ?>" alt="<?= esc($loisir['libelle']) ?>">
+                    <img src="<?= base_url(esc($loisir['chemin_image'])) ?>" alt="<?= esc($loisir['libelle']) ?>">
                     <figcaption><?= esc($loisir['libelle']) ?></figcaption>
                 </figure>
                 <?php endforeach; ?>

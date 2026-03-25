@@ -88,13 +88,13 @@ button:hover {
 </style>
 
 <div class="main">
-    <?php if (!empty($projets)) : ?>
-    <?php foreach ($projets as $projet) : ?>
+    <?php if (!empty($projets)): ?>
+    <?php foreach ($projets as $projet): ?>
     <div class="projet">
-        <span class="date"><?= date('d/m/Y', strtotime($projet["dateRealisation"])) ?></span>
-        <p><?= esc($projet["libelleProjet"]) ?> :</p>
-        <p class="description"><?= esc($projet["descriptionProjet"]) ?></p>
-        <button onclick="window.open('<?= esc($projet['urlProjet']) ?>', '_blank', 'noopener,noreferrer')"
+        <span class="date"><?= date('d/m/Y', strtotime($projet['date_realisation'])) ?></span>
+        <p><?= esc($projet['libelle']) ?> :</p>
+        <p class="description"><?= esc($projet['description']) ?></p>
+        <button onclick="window.open('<?= esc($projet['lien']) ?>', '_blank', 'noopener,noreferrer')"
             type="button">
             Ouvrir le projet
         </button>
