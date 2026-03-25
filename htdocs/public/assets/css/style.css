@@ -513,14 +513,31 @@ th {
     color: var(--color-text);
 }
 
-.justification-popup img {
-    max-width: 100%;
-    max-height: 400px;
-    border: 1px solid var(--color-border);
+/* NOUVEAU : Style pour le bouton vers Google Drive */
+.justification-popup .drive-btn {
+    background-color: var(--color-primary);
+    color: var(--bg-h-f);
+    padding: 12px 25px;
+    text-decoration: none;
     border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center;
+    /* Centre le bouton dans le popup */
     box-shadow: var(--box-shadow);
-    margin: 20px auto;
-    display: block;
+}
+
+.justification-popup .drive-btn:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-3px);
+    /* Petit effet de soulèvement */
+    box-shadow: var(--box-shadow-hover);
+}
+
+.justification-popup .drive-btn i {
+    margin-right: 8px;
+    /* Espace entre l'icône (si utilisée) et le texte */
 }
 
 .justification-popup .close-btn {

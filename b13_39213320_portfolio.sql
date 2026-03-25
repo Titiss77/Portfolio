@@ -108,62 +108,19 @@ CREATE TABLE IF NOT EXISTS `justification` (
   `chemin_image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 12 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `justification` (`id`, `justification`, `chemin_image`)
-VALUES (
-    1,
-    'Ne vous inquiétez pas, la justification est en cours de développement.',
-    ''
-  ),
-  (
-    2,
-    'Identifier les postes, logiciels ou autres ressources utilisées en TP ou en projet, structuré un inventaire de ressources (Excel, GLPI, ou autre outil), ce qui nécessite de recenser, classer et organiser les éléments matériels et logiciels.',
-    './images/11-1.png'
-  ),
-  (
-    3,
-    'Relève de « Gérer le patrimoine informatique » : Utilisation d’outils comme phpMyAdmin, export/import SQL = gestion des sauvegardes, mise en pratique de notions de continuité de service (sauvegarde = sécurité des données).',
-    './images/11-4.png'
-  ),
-  (
-    4,
-    '« Répondre aux demandes » si le site répondait à une commande ou des consignes du club, met en œuvre la « mise à disposition d’un service » (site fonctionnel, accessible en ligne).',
-    './images/12-3.png'
-  ),
-  (
-    5,
-    'J’ai installé et configuré mon environnement de développement (éditeur de code, serveur local type XAMPP, navigateur avec outils développeur) pour travailler efficacement sur le site.',
-    './images/16-1.png'
-  ),
-  (
-    6,
-    'Mise en place d\'un compte LinkedIn :\r\n\r\nhttps://www.linkedin.com/in/mathis-frances-lavillauroy-83890a330/',
-    './images/16-2.png'
-  ),
-  (
-    7,
-    'Justification : Ce stage m’a permis de confirmer mon intérêt pour le développement web et de mieux comprendre le métier en conditions réelles, ce qui contribue à affiner mon projet professionnel.',
-    ''
-  ),
-  (
-    8,
-    '« Développer la présence en ligne » : création d’un site avec WordPress = valorisation numérique, implique « Travailler en mode projet » : recueil des besoins, découpage du travail',
-    './images/13-1.png'
-  ),
-  (
-    9,
-    'Veille active = autonomie et apprentissage continu.\r\n\r\nhttps://app.flus.fr/collections/1822044671563061756\r\n\r\n',
-    './images/16-4.png'
-  ),
-  (
-    10,
-    'Malheureusement, pas de responsable du VBCQ n\'est venu.',
-    NULL
-  ),
-  (
-    11,
-    'Utilisation de Trello, assez mal géré et peu utilisé à mon avis mais utilisation quand même.',
-    NULL
-  );
+INSERT INTO `justification` (`id`, `justification`, `urlDrive`) VALUES
+(1, 'Ne vous inquiétez pas, la justification est en cours de développement.', ''),
+(2, 'Identifier les postes, logiciels ou autres ressources utilisées en TP ou en projet, structuré un inventaire de ressources (Excel, GLPI, ou autre outil), ce qui nécessite de recenser, classer et organiser les éléments matériels et logiciels.', 'https://drive.google.com/file/d/1UKuwq6GHjn0wWn8oq5NRb-0-1Qg5oL8O/view?usp=drive_link'),
+(3, 'Relève de « Gérer le patrimoine informatique » : Utilisation d’outils comme phpMyAdmin, export/import SQL = gestion des sauvegardes, mise en pratique de notions de continuité de service (sauvegarde = sécurité des données).', 'https://drive.google.com/file/d/1oajzDx_J8YJU1yXGIoxoEICSl95Xj5OA/view?usp=drive_link'),
+(4, '« Répondre aux demandes » si le site répondait à une commande ou des consignes du club, met en œuvre la « mise à disposition d’un service » (site fonctionnel, accessible en ligne).', 'https://drive.google.com/file/d/1ODGgtVxsvc0YWh4umRAwdtMpGH1eFflA/view?usp=drive_link'),
+(5, 'J’ai installé et configuré mon environnement de développement (éditeur de code, serveur local type XAMPP, navigateur avec outils développeur) pour travailler efficacement sur le site.', 'https://drive.google.com/file/d/1FozWbGbnLkB6qRz1ocuTmJFyc6UZ8aZ-/view?usp=drive_link'),
+(6, 'Mise en place d\'un compte LinkedIn :', 'https://www.linkedin.com/in/mathis-frances-lavillauroy-83890a330/'),
+(7, 'Justification : Ce stage m’a permis de confirmer mon intérêt pour le développement web et de mieux comprendre le métier en conditions réelles, ce qui contribue à affiner mon projet professionnel.', ''),
+(8, '« Développer la présence en ligne » : création d’un site avec WordPress = valorisation numérique, implique « Travailler en mode projet » : recueil des besoins, découpage du travail', 'https://drive.google.com/file/d/1UMi-qYH8UPB6KOpR0cBtNGj2y_WtM2PH/view?usp=drive_link'),
+(9, 'Veille active = autonomie et apprentissage continu.\n\nhttps://app.flus.fr/collections/1822044671563061756\n\n', 'https://app.flus.fr/collections/1822044671563061756'),
+(10, 'Malheureusement, pas de responsable du VBCQ n\'est venu.', NULL),
+(11, 'Utilisation de Trello, assez mal géré et peu utilisé à mon avis mais utilisation quand même.', NULL);
+
 -- --------------------------------------------------------
 -- Structure et données de la table `competences_a_cocher`
 -- --------------------------------------------------------
