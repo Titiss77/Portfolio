@@ -201,41 +201,6 @@ figcaption {
     z-index: 1000;
 }
 
-.light {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border-radius: var(--border-radius-img);
-    background: var(--bg-overlay);
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-    z-index: 10;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    visibility: hidden;
-    filter: blur(30px);
-}
-
-.night_to_light {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    bottom: 10px;
-    right: 10px;
-    border-radius: 50px;
-    background-color: var(--bg-h-f);
-    box-shadow: var(--box-shadow);
-    border: none;
-    cursor: pointer;
-}
-
-.fa-moon,
-.fa-sun {
-    color: var(--color-text);
-    transform: scale(2);
-    padding: 2px 0 0 1px;
-}
-
 .invitation {
     position: fixed;
     right: 75px;
