@@ -27,13 +27,13 @@
             <label><input type="radio" name="sexe" value="2" <?= old('sexe') == '2' ? 'checked' : '' ?>> Femme</label>
         </div>
 
-        <label for="nom">Nom :</label>
+        <label for="nom">nom :</label>
         <input type="text" name="nom" size="20" value="<?= old('nom') ?>" required>
 
         <label for="prenom">Prénom :</label>
         <input type="text" name="prenom" size="20" value="<?= old('prenom') ?>" required>
 
-        <label for="mail">Adresse mail :</label>
+        <label for="mail">adresse mail :</label>
         <input type="email" name="mail" size="20" value="<?= old('mail') ?>" required>
 
         <label for="texte">Message :</label>

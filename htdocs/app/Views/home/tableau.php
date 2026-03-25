@@ -55,14 +55,14 @@
         </thead>
         <tbody>
             <?php foreach ($categories as $categorie): ?>
-            <?php 
-                $rowspan = count($categorie['competences']);
-                $firstRow = true;
-                foreach ($categorie['competences'] as $comp): 
+            <?php
+            $rowspan = count($categorie['competences']);
+            $firstRow = true;
+            foreach ($categorie['competences'] as $comp):
                 ?>
             <tr>
                 <?php if ($firstRow): ?>
-                <td rowspan="<?= $rowspan ?>"><?= esc($categorie['appellation']) ?></td>
+                <td rowspan="<?= $rowspan ?>"><?= esc($categorie['libelle']) ?></td>
                 <?php $firstRow = false; ?>
                 <?php endif; ?>
 
@@ -70,9 +70,9 @@
 
                 <?php if ($comp['vu'] === '1' && $comp['justification_data']): ?>
                 <?php
-                            $justification = nl2br(htmlspecialchars($comp['justification_data']['justification'], ENT_QUOTES));
-                            $imgUrl = $comp['justification_data']['imgUrl'] ? base_url(esc($comp['justification_data']['imgUrl'])) : '';
-                        ?>
+                $justification = nl2br(htmlspecialchars($comp['justification_data']['justification'], ENT_QUOTES));
+                $imgUrl = $comp['justification_data']['imgUrl'] ? base_url(esc($comp['justification_data']['imgUrl'])) : '';
+                ?>
                 <td>
                     <button class='btn-justification' data-justification="<?= $justification ?>"
                         data-img="<?= $imgUrl ?>">X</button>

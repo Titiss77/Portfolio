@@ -27,23 +27,23 @@
             <h2>Informations de contact</h2>
             <div class="contact-flex">
                 <p>Nom : </p>
-                <p><?= esc($contact['Nom']) ?></p>
+                <p><?= esc($contact['nom']) ?></p>
             </div>
             <div class="contact-flex">
                 <p>Adresse : </p>
-                <p><?= esc($contact['Adresse']) ?></p>
+                <p><?= esc($contact['adresse']) ?></p>
             </div>
             <div class="contact-flex">
                 <p>Téléphone :</p>
-                <p><?= esc($contact['Telephone']) ?></p>
+                <p><?= esc($contact['tel']) ?></p>
             </div>
             <div class="contact-flex">
                 <p>Mail : </p>
-                <p><a href="mailto:<?= esc($contact['Mail']) ?>"><?= esc($contact['Mail']) ?></a></p>
+                <p><a href="mailto:<?= esc($contact['email']) ?>"><?= esc($contact['email']) ?></a></p>
             </div>
             <div class="contact-flex">
                 <p>Permis :</p>
-                <p><?= esc($contact['Permis']) ?></p>
+                <p><?= esc($contact['permis']) ?></p>
             </div>
             <div class="social">
                 <a href="<?= esc($lienExternes['url']) ?>">
@@ -58,16 +58,16 @@
         <?php foreach ($experiences as $exp): ?>
         <div class="exp">
             <div class="exp-logo">
-                <a href="#"><img src="<?= base_url(esc($exp['cheminImg'])) ?>" alt="<?= esc($exp['Libelle']) ?>"
-                        class="cheminImg"></a>
+                <a href="#"><img src="<?= base_url(esc($exp['chemin_image'])) ?>" alt="<?= esc($exp['libelle']) ?>"
+                        class="chemin_image"></a>
             </div>
             <div class="exp-info">
-                <h3 class="Libelle"><?= esc($exp['Libelle']) ?></h3>
-                <h4 class="NomEntreprise"><?= esc($exp['NomEntreprise']) ?></h4>
-                <h4 class="Periode"><?= esc($exp['Periode']) ?></h4>
+                <h3 class="libelle"><?= esc($exp['libelle']) ?></h3>
+                <h4 class="nom_entreprise"><?= esc($exp['nom_entreprise']) ?></h4>
+                <h4 class="periode"><?= esc($exp['periode']) ?></h4>
             </div>
             <div class="exp-desc">
-                <p class="Description"><?= esc($exp['Description']) ?></p>
+                <p class="description"><?= esc($exp['description']) ?></p>
             </div>
         </div>
         <?php endforeach; ?>
@@ -81,11 +81,11 @@
                 <a href="#"><img src="<?= base_url(esc($form['CheminImg'])) ?>" alt="Logo école"></a>
             </div>
             <div class="exp-info">
-                <h3 class="NomEtablissement"><?= esc($form['NomEtablissement']) ?></h3>
-                <h4 class="Periode"><?= esc($form['Periode']) ?></h4>
+                <h3 class="nom_etablissement"><?= esc($form['nom_etablissement']) ?></h3>
+                <h4 class="periode"><?= esc($form['periode']) ?></h4>
             </div>
             <div class="exp-desc">
-                <p><?= esc($form['Description']) ?></p>
+                <p><?= esc($form['description']) ?></p>
             </div>
         </div>
         <?php endforeach; ?>

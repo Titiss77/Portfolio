@@ -46,11 +46,11 @@ class Home extends BaseController
         $categories = [];
 
         foreach ($categoriesBrutes as $cat) {
-            $competences = $compModel->where('idCategorie', $cat['id'])->orderBy('id', 'ASC')->findAll();
+            $competences = $compModel->where('id_categorie', $cat['id'])->orderBy('id', 'ASC')->findAll();
 
             foreach ($competences as &$comp) {
-                if ($comp['vu'] === '1' && !empty($comp['idJustification'])) {
-                    $comp['justification_data'] = $justifModel->find($comp['idJustification']);
+                if ($comp['vu'] === '1' && !empty($comp['id_justification'])) {
+                    $comp['justification_data'] = $justifModel->find($comp['id_justification']);
                 } else {
                     $comp['justification_data'] = null;
                 }
@@ -106,7 +106,7 @@ class Home extends BaseController
 
         $contactModel = new ContactModel();
         $contactModel->save([
-            'adressIp' => $this->request->getIPAddress(),
+            'adresse_ip' => $this->request->getIPAddress(),
             'date' => date('Y-m-d H:i:s'),
             'sexe' => $this->request->getPost('sexe'),
             'nom' => $this->request->getPost('nom'),

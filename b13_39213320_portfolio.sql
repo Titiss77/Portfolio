@@ -11,19 +11,19 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `infos_generales`;
 CREATE TABLE IF NOT EXISTS `infos_generales` (
-  `idPersonne` int(11) NOT NULL AUTO_INCREMENT,
-  `urlPdp` varchar(100) NOT NULL,
+  `id_personne` int(11) NOT NULL AUTO_INCREMENT,
+  `photo_de_profil` varchar(100) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `etudes` varchar(100) NOT NULL,
   `dateDeNaissance` date NOT NULL,
   `localisation` varchar(100) NOT NULL,
   `meConcernant` text NOT NULL,
-  PRIMARY KEY (`idPersonne`)
+  PRIMARY KEY (`id_personne`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 INSERT INTO `infos_generales` (
-    `idPersonne`,
-    `urlPdp`,
+    `id_personne`,
+    `photo_de_profil`,
     `nom`,
     `prenom`,
     `etudes`,
@@ -47,10 +47,10 @@ VALUES (
 DROP TABLE IF EXISTS `categories_bloc_1`;
 CREATE TABLE IF NOT EXISTS `categories_bloc_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `appellation` varchar(255) NOT NULL,
+  `libelle` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `categories_bloc_1` (`id`, `appellation`)
+INSERT INTO `categories_bloc_1` (`id`, `libelle`)
 VALUES (1, '1.1 Gérer le patrimoine informatique'),
   (
     2,
@@ -75,15 +75,21 @@ VALUES (1, '1.1 Gérer le patrimoine informatique'),
 DROP TABLE IF EXISTS `competences`;
 CREATE TABLE IF NOT EXISTS `competences` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idPersonne` int(11) NOT NULL DEFAULT 1,
+  `id_personne` int(11) NOT NULL DEFAULT 1,
   `nom` varchar(100) NOT NULL,
   `pourcentage` int(11) NOT NULL,
   `type` enum('professionnel', 'personnel') NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_competences_personne` (`idPersonne`),
-  CONSTRAINT `fk_competences_personne` FOREIGN KEY (`idPersonne`) REFERENCES `infos_generales` (`idPersonne`) ON DELETE CASCADE
+  KEY `fk_competences_personne` (`id_personne`),
+  CONSTRAINT `fk_competences_personne` FOREIGN KEY (`id_personne`) REFERENCES `infos_generales` (`id_personne`) ON DELETE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `competences` (`id`, `idPersonne`, `nom`, `pourcentage`, `type`)
+INSERT INTO `competences` (
+    `id`,
+    `id_personne`,
+    `nom`,
+    `pourcentage`,
+    `type`
+  )
 VALUES (1, 1, 'HTML / CSS', 100, 'professionnel'),
   (2, 1, 'MySQL', 100, 'professionnel'),
   (3, 1, 'JavaScript', 70, 'professionnel'),
@@ -164,23 +170,23 @@ VALUES (
 DROP TABLE IF EXISTS `competences_a_cocher`;
 CREATE TABLE IF NOT EXISTS `competences_a_cocher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idCategorie` int(11) NOT NULL,
+  `id_categorie` int(11) NOT NULL,
   `libelle` text NOT NULL,
-  `idJustification` int(11) DEFAULT NULL,
+  `id_justification` int(11) DEFAULT NULL,
   `vu` enum('0', '1') NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `idCategorie` (`idCategorie`),
-  KEY `idJustification` (`idJustification`),
-  CONSTRAINT `fk_competences_a_cocher_categorie` FOREIGN KEY (`idCategorie`) REFERENCES `categories_bloc_1` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_competences_a_cocher_justification` FOREIGN KEY (`idJustification`) REFERENCES `justification` (`id`) ON DELETE
+  KEY `id_categorie` (`id_categorie`),
+  KEY `id_justification` (`id_justification`),
+  CONSTRAINT `fk_competences_a_cocher_categorie` FOREIGN KEY (`id_categorie`) REFERENCES `categories_bloc_1` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_competences_a_cocher_justification` FOREIGN KEY (`id_justification`) REFERENCES `justification` (`id`) ON DELETE
   SET NULL
 ) ENGINE = InnoDB AUTO_INCREMENT = 23 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 -- Note: Les valeurs `vu` = '' (vides) du dump original ont été corrigées par '0' pour respecter le type Enum strict.
 INSERT INTO `competences_a_cocher` (
     `id`,
-    `idCategorie`,
+    `id_categorie`,
     `libelle`,
-    `idJustification`,
+    `id_justification`,
     `vu`
   )
 VALUES (
@@ -325,7 +331,7 @@ VALUES (
 DROP TABLE IF EXISTS `contact`;
 CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `adressIp` varchar(45) NOT NULL,
+  `adresse_ip` varchar(45) NOT NULL,
   -- Augmenté à VARCHAR(45) pour supporter les IPv6
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   -- Transformé en datetime pour la précision de l'heure
@@ -342,24 +348,24 @@ CREATE TABLE IF NOT EXISTS `contact` (
 DROP TABLE IF EXISTS `experience_pro`;
 CREATE TABLE IF NOT EXISTS `experience_pro` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idPersonne` int(11) NOT NULL DEFAULT 1,
-  `Libelle` varchar(100) NOT NULL,
-  `NomEntreprise` varchar(100) NOT NULL,
-  `Periode` varchar(50) NOT NULL,
-  `Description` text NOT NULL,
-  `cheminImg` varchar(255) NOT NULL,
+  `id_personne` int(11) NOT NULL DEFAULT 1,
+  `libelle` varchar(100) NOT NULL,
+  `nom_entreprise` varchar(100) NOT NULL,
+  `periode` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `chemin_image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_experience_pro_personne` (`idPersonne`),
-  CONSTRAINT `fk_experience_pro_personne` FOREIGN KEY (`idPersonne`) REFERENCES `infos_generales` (`idPersonne`) ON DELETE CASCADE
+  KEY `fk_experience_pro_personne` (`id_personne`),
+  CONSTRAINT `fk_experience_pro_personne` FOREIGN KEY (`id_personne`) REFERENCES `infos_generales` (`id_personne`) ON DELETE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 INSERT INTO `experience_pro` (
     `id`,
-    `idPersonne`,
-    `Libelle`,
-    `NomEntreprise`,
-    `Periode`,
-    `Description`,
-    `cheminImg`
+    `id_personne`,
+    `libelle`,
+    `nom_entreprise`,
+    `periode`,
+    `description`,
+    `chemin_image`
   )
 VALUES (
     1,
@@ -412,22 +418,22 @@ VALUES (
 DROP TABLE IF EXISTS `formation`;
 CREATE TABLE IF NOT EXISTS `formation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idPersonne` int(11) NOT NULL DEFAULT 1,
-  `NomEtablissement` varchar(100) NOT NULL,
-  `Periode` varchar(50) NOT NULL,
-  `Description` text NOT NULL,
+  `id_personne` int(11) NOT NULL DEFAULT 1,
+  `nom_etablissement` varchar(100) NOT NULL,
+  `periode` varchar(50) NOT NULL,
+  `description` text NOT NULL,
   `CheminImg` varchar(255) NOT NULL DEFAULT './images/ecole.png',
   PRIMARY KEY (`id`),
-  KEY `fk_formation_personne` (`idPersonne`),
-  CONSTRAINT `fk_formation_personne` FOREIGN KEY (`idPersonne`) REFERENCES `infos_generales` (`idPersonne`) ON DELETE CASCADE
+  KEY `fk_formation_personne` (`id_personne`),
+  CONSTRAINT `fk_formation_personne` FOREIGN KEY (`id_personne`) REFERENCES `infos_generales` (`id_personne`) ON DELETE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
--- Note: idPersonne est corrigé de 0 vers 1 pour permettre la clé étrangère de la première ligne.
+-- Note: id_personne est corrigé de 0 vers 1 pour permettre la clé étrangère de la première ligne.
 INSERT INTO `formation` (
     `id`,
-    `idPersonne`,
-    `NomEtablissement`,
-    `Periode`,
-    `Description`,
+    `id_personne`,
+    `nom_etablissement`,
+    `periode`,
+    `description`,
     `CheminImg`
   )
 VALUES (
@@ -460,20 +466,20 @@ VALUES (
 DROP TABLE IF EXISTS `infos_contacts`;
 CREATE TABLE IF NOT EXISTS `infos_contacts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(100) NOT NULL,
-  `Adresse` varchar(255) NOT NULL,
-  `Telephone` varchar(20) NOT NULL,
-  `Mail` varchar(100) NOT NULL,
-  `Permis` enum('Oui', 'Non') DEFAULT 'Non',
+  `nom` varchar(100) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `tel` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `permis` enum('Oui', 'Non') DEFAULT 'Non',
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 INSERT INTO `infos_contacts` (
     `id`,
-    `Nom`,
-    `Adresse`,
-    `Telephone`,
-    `Mail`,
-    `Permis`
+    `nom`,
+    `adresse`,
+    `tel`,
+    `email`,
+    `permis`
   )
 VALUES (
     1,

@@ -5,7 +5,7 @@
 <div class="main">
 
     <section class="presentation" id="presentation">
-        <img src="<?= base_url(esc($personne['urlPdp'])) ?>" alt="photo de profil" class="image">
+        <img src="<?= base_url(esc($personne['photo_de_profil'])) ?>" alt="photo de profil" class="image">
         <p class="nom"><?= esc($personne['prenom']) . ' ' . esc($personne['nom']) ?></p>
         <p class="etudes"><?= esc($personne['etudes']) ?></p>
 
