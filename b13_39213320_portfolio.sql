@@ -7,10 +7,10 @@ USE `b32_41412376_portfolio`;
 -- Désactivation temporaire des vérifications de clés étrangères pour pouvoir écraser et recréer les tables proprement
 SET FOREIGN_KEY_CHECKS = 0;
 -- --------------------------------------------------------
--- Structure et données de la table `personnelle`
+-- Structure et données de la table `infos_generales`
 -- --------------------------------------------------------
-DROP TABLE IF EXISTS `personnelle`;
-CREATE TABLE IF NOT EXISTS `personnelle` (
+DROP TABLE IF EXISTS `infos_generales`;
+CREATE TABLE IF NOT EXISTS `infos_generales` (
   `idPersonne` int(11) NOT NULL AUTO_INCREMENT,
   `urlPdp` varchar(100) NOT NULL,
   `nom` varchar(50) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `personnelle` (
   `meConcernant` text NOT NULL,
   PRIMARY KEY (`idPersonne`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `personnelle` (
+INSERT INTO `infos_generales` (
     `idPersonne`,
     `urlPdp`,
     `nom`,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `competences` (
   `type` enum('professionnel', 'personnel') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_competences_personne` (`idPersonne`),
-  CONSTRAINT `fk_competences_personne` FOREIGN KEY (`idPersonne`) REFERENCES `personnelle` (`idPersonne`) ON DELETE CASCADE
+  CONSTRAINT `fk_competences_personne` FOREIGN KEY (`idPersonne`) REFERENCES `infos_generales` (`idPersonne`) ON DELETE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 INSERT INTO `competences` (`id`, `idPersonne`, `nom`, `pourcentage`, `type`)
 VALUES (1, 1, 'HTML / CSS', 100, 'professionnel'),
@@ -337,10 +337,10 @@ CREATE TABLE IF NOT EXISTS `contact` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 -- --------------------------------------------------------
--- Structure et données de la table `exppro`
+-- Structure et données de la table `experience_pro`
 -- --------------------------------------------------------
-DROP TABLE IF EXISTS `exppro`;
-CREATE TABLE IF NOT EXISTS `exppro` (
+DROP TABLE IF EXISTS `experience_pro`;
+CREATE TABLE IF NOT EXISTS `experience_pro` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idPersonne` int(11) NOT NULL DEFAULT 1,
   `Libelle` varchar(100) NOT NULL,
@@ -349,10 +349,10 @@ CREATE TABLE IF NOT EXISTS `exppro` (
   `Description` text NOT NULL,
   `cheminImg` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_exppro_personne` (`idPersonne`),
-  CONSTRAINT `fk_exppro_personne` FOREIGN KEY (`idPersonne`) REFERENCES `personnelle` (`idPersonne`) ON DELETE CASCADE
+  KEY `fk_experience_pro_personne` (`idPersonne`),
+  CONSTRAINT `fk_experience_pro_personne` FOREIGN KEY (`idPersonne`) REFERENCES `infos_generales` (`idPersonne`) ON DELETE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `exppro` (
+INSERT INTO `experience_pro` (
     `id`,
     `idPersonne`,
     `Libelle`,
@@ -419,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `formation` (
   `CheminImg` varchar(255) NOT NULL DEFAULT './images/ecole.png',
   PRIMARY KEY (`id`),
   KEY `fk_formation_personne` (`idPersonne`),
-  CONSTRAINT `fk_formation_personne` FOREIGN KEY (`idPersonne`) REFERENCES `personnelle` (`idPersonne`) ON DELETE CASCADE
+  CONSTRAINT `fk_formation_personne` FOREIGN KEY (`idPersonne`) REFERENCES `infos_generales` (`idPersonne`) ON DELETE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 -- Note: idPersonne est corrigé de 0 vers 1 pour permettre la clé étrangère de la première ligne.
 INSERT INTO `formation` (
@@ -455,10 +455,10 @@ VALUES (
     './images/cv/ecole.png'
   );
 -- --------------------------------------------------------
--- Structure et données de la table `infocontact`
+-- Structure et données de la table `infos_contacts`
 -- --------------------------------------------------------
-DROP TABLE IF EXISTS `infocontact`;
-CREATE TABLE IF NOT EXISTS `infocontact` (
+DROP TABLE IF EXISTS `infos_contacts`;
+CREATE TABLE IF NOT EXISTS `infos_contacts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(100) NOT NULL,
   `Adresse` varchar(255) NOT NULL,
@@ -467,7 +467,7 @@ CREATE TABLE IF NOT EXISTS `infocontact` (
   `Permis` enum('Oui', 'Non') DEFAULT 'Non',
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `infocontact` (
+INSERT INTO `infos_contacts` (
     `id`,
     `Nom`,
     `Adresse`,
@@ -484,16 +484,16 @@ VALUES (
     'Oui'
   );
 -- --------------------------------------------------------
--- Structure et données de la table `lienexternes`
+-- Structure et données de la table `liens_externes`
 -- --------------------------------------------------------
-DROP TABLE IF EXISTS `lienexternes`;
-CREATE TABLE IF NOT EXISTS `lienexternes` (
+DROP TABLE IF EXISTS `liens_externes`;
+CREATE TABLE IF NOT EXISTS `liens_externes` (
   `idLien` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(100) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`idLien`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-INSERT INTO `lienexternes` (`idLien`, `libelle`, `url`)
+INSERT INTO `liens_externes` (`idLien`, `libelle`, `url`)
 VALUES (
     1,
     'LinkedIn',

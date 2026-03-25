@@ -1,18 +1,18 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\PersonnelleModel;
-use App\Models\LienExternesModel;
-use App\Models\LoisirsModel;
-use App\Models\CompetenceModel;
-use App\Models\ProjetModel;
-use App\Models\ContactModel;
 use App\Models\CategoriesBloc1Model;
+use App\Models\CompetenceModel;
 use App\Models\CompetencesAcocherModel;
-use App\Models\JustificationModel;
-use App\Models\InfoContactModel;
+use App\Models\ContactModel;
 use App\Models\ExpProModel;
 use App\Models\FormationModel;
+use App\Models\InfoContactModel;
+use App\Models\JustificationModel;
+use App\Models\LienExternesModel;
+use App\Models\LoisirsModel;
+use App\Models\PersonnelleModel;
+use App\Models\ProjetModel;
 
 class Home extends BaseController
 {
@@ -20,16 +20,16 @@ class Home extends BaseController
     {
         helper('age');
 
-        $personnelleModel = new PersonnelleModel();
+        $infos_generalesModel = new PersonnelleModel();
         $lienExternesModel = new LienExternesModel();
         $loisirsModel = new LoisirsModel();
 
         $data = [
-            'title'        => 'Accueil - Portfolio',
+            'title' => 'Accueil - Portfolio',
             // Le CSS global (style.css) est déjà chargé dans le layout, pas besoin de l'ajouter ici
-            'personne'     => $personnelleModel->first(),
+            'personne' => $infos_generalesModel->first(),
             'lienExternes' => $lienExternesModel->findAll(),
-            'loisirs'      => $loisirsModel->findAll()
+            'loisirs' => $loisirsModel->findAll()
         ];
 
         // On ne retourne plus que la vue finale
@@ -47,7 +47,7 @@ class Home extends BaseController
 
         foreach ($categoriesBrutes as $cat) {
             $competences = $compModel->where('idCategorie', $cat['id'])->orderBy('id', 'ASC')->findAll();
-            
+
             foreach ($competences as &$comp) {
                 if ($comp['vu'] === '1' && !empty($comp['idJustification'])) {
                     $comp['justification_data'] = $justifModel->find($comp['idJustification']);
@@ -60,10 +60,10 @@ class Home extends BaseController
         }
 
         $data = [
-            'title'      => 'Compétences - Portfolio',
+            'title' => 'Compétences - Portfolio',
             'categories' => $categories
         ];
-        
+
         return view('home/tableau', $data);
     }
 
@@ -71,10 +71,10 @@ class Home extends BaseController
     {
         $projetModel = new ProjetModel();
         $data = [
-            'title'   => 'Mes Projets - Portfolio',
+            'title' => 'Mes Projets - Portfolio',
             'projets' => $projetModel->orderBy('id', 'DESC')->findAll()
         ];
-        
+
         return view('home/projets', $data);
     }
 
@@ -83,21 +83,21 @@ class Home extends BaseController
         helper('form');
         $data = [
             'title' => 'Contacts - Portfolio',
-            'css'   => ['contact.css'] // <-- On charge le CSS spécifique au formulaire de contact !
+            'css' => ['contact.css']  // <-- On charge le CSS spécifique au formulaire de contact !
         ];
-        
+
         return view('home/contact', $data);
     }
 
     public function submitContact()
     {
         helper('form');
-        
+
         $rules = [
-            'nom'    => 'required|min_length[2]',
+            'nom' => 'required|min_length[2]',
             'prenom' => 'required|min_length[2]',
-            'mail'   => 'required|valid_email',
-            'texte'  => 'required|min_length[5]'
+            'mail' => 'required|valid_email',
+            'texte' => 'required|min_length[5]'
         ];
 
         if (!$this->validate($rules)) {
@@ -107,12 +107,12 @@ class Home extends BaseController
         $contactModel = new ContactModel();
         $contactModel->save([
             'adressIp' => $this->request->getIPAddress(),
-            'date'     => date('Y-m-d H:i:s'),
-            'sexe'     => $this->request->getPost('sexe'),
-            'nom'      => $this->request->getPost('nom'),
-            'prenom'   => $this->request->getPost('prenom'),
-            'mail'     => $this->request->getPost('mail'),
-            'message'  => $this->request->getPost('texte')
+            'date' => date('Y-m-d H:i:s'),
+            'sexe' => $this->request->getPost('sexe'),
+            'nom' => $this->request->getPost('nom'),
+            'prenom' => $this->request->getPost('prenom'),
+            'mail' => $this->request->getPost('mail'),
+            'message' => $this->request->getPost('texte')
         ]);
 
         return redirect()->to('contact')->with('success', 'Votre message a bien été envoyé !');
@@ -127,13 +127,13 @@ class Home extends BaseController
         $lienExternesModel = new LienExternesModel();
 
         $data = [
-            'contact'     => $infoContactModel->find(1),
+            'contact' => $infoContactModel->find(1),
             'experiences' => $expProModel->orderBy('id', 'DESC')->findAll(),
-            'formations'  => $formationModel->orderBy('id', 'DESC')->findAll(),
-            'loisirs'     => $loisirsModel->orderBy('idLoisir', 'ASC')->findAll(),
+            'formations' => $formationModel->orderBy('id', 'DESC')->findAll(),
+            'loisirs' => $loisirsModel->orderBy('idLoisir', 'ASC')->findAll(),
             'lienExternes' => $lienExternesModel->getOneLink(1),
         ];
-        
+
         // Le CV garde sa propre structure HTML indépendante du reste du site
         return view('cv/index', $data);
     }
