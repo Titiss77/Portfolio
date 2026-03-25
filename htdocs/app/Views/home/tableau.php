@@ -1,3 +1,7 @@
+<?= $this->extend('templates/layout') ?>
+
+<?= $this->section('content') ?>
+
 <style>
 .justification-popup {
     display: none;
@@ -116,3 +120,4 @@ function closePopup() {
     document.getElementById('overlay').style.display = 'none';
 }
 </script>
+<?= $this->endSection() ?>

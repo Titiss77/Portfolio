@@ -1,3 +1,7 @@
+<?= $this->extend('templates/layout') ?>
+
+<?= $this->section('content') ?>
+
 <div class="formulaire">
     <?php if (session()->getFlashdata('success')): ?>
     <p style="color: green; text-align: center; font-weight: bold;">
@@ -41,3 +45,4 @@
         </p>
     </form>
 </div>
+<?= $this->endSection() ?>

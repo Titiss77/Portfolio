@@ -18,26 +18,22 @@ class Home extends BaseController
 {
     public function index()
     {
-        // Chargement du helper pour l'âge
         helper('age');
 
-        // Initialisation des modèles
         $personnelleModel = new PersonnelleModel();
         $lienExternesModel = new LienExternesModel();
         $loisirsModel = new LoisirsModel();
 
-        // Récupération des données (équivalent de fetch() et fetchAll())
         $data = [
             'title'        => 'Accueil - Portfolio',
+            // Le CSS global (style.css) est déjà chargé dans le layout, pas besoin de l'ajouter ici
             'personne'     => $personnelleModel->first(),
             'lienExternes' => $lienExternesModel->findAll(),
             'loisirs'      => $loisirsModel->findAll()
         ];
 
-        // Appel des vues dans l'ordre (header, puis contenu, puis footer)
-        return view('templates/header', $data)
-             . view('home/index', $data)
-             . view('templates/footer');
+        // On ne retourne plus que la vue finale
+        return view('home/index', $data);
     }
 
     public function tableau()
@@ -46,15 +42,12 @@ class Home extends BaseController
         $compModel = new CompetencesAcocherModel();
         $justifModel = new JustificationModel();
 
-        // On récupère les catégories
         $categoriesBrutes = $catModel->findAll();
         $categories = [];
 
-        // On construit un tableau complet pour la vue (Catégories -> Compétences -> Justifications)
         foreach ($categoriesBrutes as $cat) {
             $competences = $compModel->where('idCategorie', $cat['id'])->orderBy('id', 'ASC')->findAll();
             
-            // Pour chaque compétence, on cherche sa justification si elle a été vue
             foreach ($competences as &$comp) {
                 if ($comp['vu'] === '1' && !empty($comp['idJustification'])) {
                     $comp['justification_data'] = $justifModel->find($comp['idJustification']);
@@ -71,9 +64,7 @@ class Home extends BaseController
             'categories' => $categories
         ];
         
-        return view('templates/header', $data)
-             . view('home/tableau', $data)
-             . view('templates/footer');
+        return view('home/tableau', $data);
     }
 
     public function projets()
@@ -84,26 +75,24 @@ class Home extends BaseController
             'projets' => $projetModel->orderBy('id', 'DESC')->findAll()
         ];
         
-        return view('templates/header', $data)
-             . view('home/projets', $data)
-             . view('templates/footer');
+        return view('home/projets', $data);
     }
 
     public function contact()
     {
         helper('form');
-        $data = ['title' => 'Contacts - Portfolio'];
+        $data = [
+            'title' => 'Contacts - Portfolio',
+            'css'   => ['contact.css'] // <-- On charge le CSS spécifique au formulaire de contact !
+        ];
         
-        return view('templates/header', $data)
-             . view('home/contact', $data)
-             . view('templates/footer');
+        return view('home/contact', $data);
     }
 
     public function submitContact()
     {
         helper('form');
         
-        // Validation basique
         $rules = [
             'nom'    => 'required|min_length[2]',
             'prenom' => 'required|min_length[2]',
@@ -115,7 +104,6 @@ class Home extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        // Sauvegarde en base de données
         $contactModel = new ContactModel();
         $contactModel->save([
             'adressIp' => $this->request->getIPAddress(),
@@ -124,7 +112,7 @@ class Home extends BaseController
             'nom'      => $this->request->getPost('nom'),
             'prenom'   => $this->request->getPost('prenom'),
             'mail'     => $this->request->getPost('mail'),
-            'message'  => $this->request->getPost('texte') // 'texte' vient du formulaire, 'message' va dans la BDD
+            'message'  => $this->request->getPost('texte')
         ]);
 
         return redirect()->to('contact')->with('success', 'Votre message a bien été envoyé !');
@@ -139,14 +127,14 @@ class Home extends BaseController
         $lienExternesModel = new LienExternesModel();
 
         $data = [
-            'contact'     => $infoContactModel->find(1), // id = 1
+            'contact'     => $infoContactModel->find(1),
             'experiences' => $expProModel->orderBy('id', 'DESC')->findAll(),
             'formations'  => $formationModel->orderBy('id', 'DESC')->findAll(),
             'loisirs'     => $loisirsModel->orderBy('idLoisir', 'ASC')->findAll(),
             'lienExternes' => $lienExternesModel->getOneLink(1),
         ];
         
-        // Le CV a sa propre structure HTML entière, on ne charge pas les templates header/footer
+        // Le CV garde sa propre structure HTML indépendante du reste du site
         return view('cv/index', $data);
     }
 }

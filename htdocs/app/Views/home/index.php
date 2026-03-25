@@ -1,4 +1,9 @@
+<?= $this->extend('templates/layout') ?>
+
+<?= $this->section('content') ?>
+
 <div class="main">
+
     <section class="presentation" id="presentation">
         <img src="<?= base_url(esc($personne['urlPdp'])) ?>" alt="photo de profil" class="image">
         <p class="nom"><?= esc($personne['prenom']) . ' ' . esc($personne['nom']) ?></p>
@@ -43,3 +48,4 @@
 
     <div class="light" id="light"></div>
 </div>
+<?= $this->endSection() ?>

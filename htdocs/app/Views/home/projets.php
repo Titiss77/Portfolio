@@ -1,3 +1,7 @@
+<?= $this->extend('templates/layout') ?>
+
+<?= $this->section('content') ?>
+
 <style>
 /* CSS d'origine conservé à l'identique */
 body {
@@ -100,3 +104,4 @@ button:hover {
     <p>Aucun projet à afficher.</p>
     <?php endif; ?>
 </div>
+<?= $this->endSection() ?>

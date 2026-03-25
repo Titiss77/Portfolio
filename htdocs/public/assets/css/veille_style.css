@@ -1,11 +1,5 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    max-width: 1200px;
-    /* Élargi pour faire de la place à plusieurs colonnes */
-    margin: 0 auto;
-    padding: 20px;
+.veille{
+    padding-top: 100px;
 }
 
 h1 {
@@ -18,9 +12,9 @@ h1 {
 .articles-grid {
     display: grid;
     /* Crée des colonnes d'au moins 320px de large, et s'adapte automatiquement à l'écran */
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    /* Espace entre les cartes */
+    margin: 0 100px;
     align-items: stretch;
     /* Force les cartes d'une même ligne à avoir la même hauteur */
 }
