@@ -1,42 +1,35 @@
-.veille{
+.veille {
     padding-top: 100px;
     text-align: center;
 }
 
 h1 {
     text-align: center;
-    color: #2c3e50;
     margin-bottom: 40px;
 }
 
-/* --- NOUVEAU : Le conteneur qui gère l'affichage en grille --- */
 .articles-grid {
     display: grid;
-    /* Crée des colonnes d'au moins 320px de large, et s'adapte automatiquement à l'écran */
+    /* On garde votre grille à 3 colonnes selon votre structure */
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     margin: 0 100px;
     align-items: stretch;
-    /* Force les cartes d'une même ligne à avoir la même hauteur */
 }
 
 .article-card {
-    background: #fff;
+    background: var(--bg-h-f);
     border-radius: 8px;
     padding: 20px;
-    /* Suppression du margin-bottom car géré par le 'gap' de la grille */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
-    /* Permet de structurer l'intérieur de la carte de haut en bas */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    /* Animation fluide au survol */
 }
 
-/* Petit effet dynamique quand on passe la souris sur une carte */
 .article-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-hover);
 }
 
 .article-card h2 {
@@ -46,50 +39,50 @@ h1 {
 }
 
 .article-card a {
-    color: #2980b9;
+    color: var(--color-primary);
     text-decoration: none;
 }
 
 .article-card a:hover {
+    color: var(--color-primary-hover);
     text-decoration: underline;
 }
 
 .meta {
     font-size: 0.85em;
-    color: #7f8c8d;
+    color: var(--color-text-muted);
     margin-bottom: 15px;
 }
 
 .source-badge {
-    background-color: #e74c3c;
-    color: white;
+    background-color: var(--color-badge);
+    color: var(--bg-h-f);
     padding: 3px 8px;
     border-radius: 12px;
     font-weight: bold;
     display: inline-block;
     margin-bottom: 5px;
-    /* Évite que la date ne colle trop au badge sur les petits écrans */
 }
 
 .description {
     font-size: 0.95em;
     line-height: 1.5;
-    color: #555;
+    color: var(--color-text-muted);
     flex-grow: 1;
-    /* Pousse la description pour combler le vide si les cartes ont des hauteurs différentes */
 }
 
-.btn_maj{
-    background-color: #3498db;
-    color: white;
+.btn_maj {
+    background-color: var(--color-primary);
+    color: var(--bg-h-f);
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
     transition: background-color 0.3s ease;
     margin: 20px;
 }
 
 .btn_maj:hover {
-    background-color: #2980b9;
+    background-color: var(--color-primary-hover);
 }

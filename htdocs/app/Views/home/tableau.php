@@ -2,48 +2,6 @@
 
 <?= $this->section('content') ?>
 
-<style>
-.justification-popup {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    max-width: 90%;
-    max-height: 90%;
-    overflow: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1001;
-}
-
-.justification-popup img {
-    max-width: 100%;
-    max-height: 360px;
-    border: 2px solid gray;
-    border-radius: 8px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
-    margin: 1rem auto;
-    display: block;
-}
-
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: none;
-}
-</style>
-
 <div class="tableau">
     <table id="monTableau">
         <thead>
@@ -56,13 +14,13 @@
         <tbody>
             <?php foreach ($categories as $categorie): ?>
             <?php
-            $rowspan = count($categorie['competences']);
-            $firstRow = true;
-            foreach ($categorie['competences'] as $comp):
-                ?>
+                $rowspan = count($categorie['competences']);
+                $firstRow = true;
+                foreach ($categorie['competences'] as $comp):
+                    ?>
             <tr>
                 <?php if ($firstRow): ?>
-                <td rowspan="<?= $rowspan ?>"><?= esc($categorie['libelle']) ?></td>
+                <td rowspan="<?= $rowspan ?>"><?= esc($categorie['appellation'] ?? $categorie['libelle']) ?></td>
                 <?php $firstRow = false; ?>
                 <?php endif; ?>
 
@@ -70,11 +28,11 @@
 
                 <?php if ($comp['vu'] === '1' && $comp['justification_data']): ?>
                 <?php
-                $justification = nl2br(htmlspecialchars($comp['justification_data']['justification'], ENT_QUOTES));
-                $chemin_image = $comp['justification_data']['chemin_image'] ? base_url(esc($comp['justification_data']['chemin_image'])) : '';
-                ?>
-                <td>
-                    <button class='btn-justification' data-justification="<?= $justification ?>"
+                            $justification = nl2br(htmlspecialchars($comp['justification_data']['justification'], ENT_QUOTES));
+                            $chemin_image = !empty($comp['justification_data']['imgUrl']) ? base_url(esc($comp['justification_data']['imgUrl'])) : '';
+                            ?>
+                <td style="text-align: center;">
+                    <button class="btn-justification" data-justification="<?= $justification ?>"
                         data-img="<?= $chemin_image ?>">X</button>
                 </td>
                 <?php else: ?>
@@ -89,9 +47,9 @@
 
 <div id="overlay"></div>
 <div class="justification-popup" id="popup">
-    <button onclick="closePopup()">Fermer</button>
-    <p id="justification-text"></p>
-    <img id="justification-img" src="" alt="Justification" style="max-width: 100%; display: none;" />
+    <button class="close-btn" onclick="closePopup()">Fermer</button>
+    <p id="justification-text" style="font-size: 1.1em; line-height: 1.5; margin-bottom: 15px;"></p>
+    <img id="justification-img" src="" alt="Justification" style="display: none;" />
 </div>
 
 <script>
@@ -103,14 +61,15 @@ document.querySelectorAll('.btn-justification').forEach(btn => {
         document.getElementById('justification-text').innerHTML = justification;
         const imgEl = document.getElementById('justification-img');
 
-        if (chemin_image) {
+        if (chemin_image && chemin_image !== 'null' && chemin_image !== '') {
             imgEl.src = chemin_image;
             imgEl.style.display = 'block';
         } else {
             imgEl.style.display = 'none';
         }
 
-        document.getElementById('popup').style.display = 'block';
+        document.getElementById('popup').style.display =
+        'flex'; // On utilise flex pour centrer le contenu
         document.getElementById('overlay').style.display = 'block';
     });
 });
@@ -119,5 +78,9 @@ function closePopup() {
     document.getElementById('popup').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
 }
+
+// Bonus : Fermer le popup si on clique à côté (sur l'overlay noir)
+document.getElementById('overlay').addEventListener('click', closePopup);
 </script>
+
 <?= $this->endSection() ?>

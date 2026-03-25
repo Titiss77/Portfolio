@@ -2,7 +2,7 @@
     max-width: 500px;
     margin: 60px auto;
     padding: 30px;
-    background-color: var(--bg-body);
+    background-color: var(--bg-h-f);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
@@ -10,7 +10,6 @@
 .formulaire h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: var(--color-text);
 }
 
 .formulaire form {
@@ -22,7 +21,6 @@
 label {
     font-weight: bold;
     margin-bottom: 5px;
-    color: var(--color-text);
 }
 
 .sexe-container {
@@ -42,8 +40,9 @@ textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-large);
+    border-radius: 8px;
+    /* Plus harmonieux avec la charte */
+    font-size: var(--font-size-medium);
     box-sizing: border-box;
 }
 
@@ -57,31 +56,32 @@ input[type="reset"] {
     padding: 10px 15px;
     border: none;
     border-radius: 6px;
-    background-color: #1976d2;
-    color: var(--color-text);
+    background-color: var(--color-primary);
+    color: var(--bg-h-f);
     cursor: pointer;
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-medium);
+    font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
 input[type="reset"] {
-    background-color: var(--bg-h-f);
+    background-color: var(--color-border);
     margin-left: 10px;
     color: var(--color-text);
 }
 
 input[type="submit"]:hover {
-    background-color: #1565c0;
+    background-color: var(--color-primary-hover);
+}
+
+input[type="reset"]:hover {
+    background-color: var(--color-secondary-hover);
 }
 
 input[name="sexe"] {
     background-color: initial;
-    cursor: default;
-    appearance: auto;
-    box-sizing: border-box;
+    cursor: pointer;
     margin: 3px 3px 0px 5px;
-    padding: initial;
-    border: initial;
 }
 
 .page {
@@ -91,7 +91,7 @@ input[name="sexe"] {
 }
 
 .catalogue {
-    background-color: #ffffff;
+    background-color: var(--bg-h-f);
     border-radius: var(--border-radius);
     padding: 30px;
     box-shadow: var(--box-shadow);
@@ -103,16 +103,15 @@ input[name="sexe"] {
 
 .texte p {
     margin-bottom: 15px;
-    font-size: var(--font-size-large);
-    color: var(--color-text);
+    font-size: var(--font-size-medium);
     line-height: 1.5;
 }
 
 .texte em {
-    color: var(--color-text);
     display: block;
     padding: 10px;
     background-color: var(--bg-body);
-    border-left: 4px solid var(--color-border);
-    border-radius: var(--border-radius);
+    border-left: 4px solid var(--color-primary);
+    /* Rendu plus design avec la couleur principale */
+    border-radius: 4px;
 }
