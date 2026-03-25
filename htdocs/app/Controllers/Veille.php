@@ -17,7 +17,7 @@ class Veille extends BaseController
         // Récupère les articles, du plus récent au plus ancien
         $data['articles'] = $model->orderBy('pub_date', 'DESC')->findAll();
 
-        return view('veille_view', $data);
+        return view('veille/index', $data);
     }
 
     public function fetch_rss()
