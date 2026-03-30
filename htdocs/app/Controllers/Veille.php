@@ -1,37 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Models\ArticleModel;
+use Config\Services;
 
 class Veille extends BaseController
 {
-    
     public function index()
     {
         helper('text');
 
-        $model = new \App\Models\ArticleModel();
+        $model = new ArticleModel();
 
         $data = [
-            'title'    => 'Ma Veille IoT',
-            'css'      => ['veille_style.css'],
-            'articles' => $model->orderBy('pub_date', 'DESC')->findAll()
+            'title' => 'Ma Veille IoT',
+            'css' => ['veille_style.css'],
+            'articles' => $model->orderBy('pub_date', 'DESC')->findAll(),
         ];
 
         return view('veille/index', $data);
     }
-    public function fetch_rss()
+
+    public function fetch_rss(): void
     {
-        $model = new \App\Models\ArticleModel();
+        $model = new ArticleModel();
         // On charge le client HTTP natif de CodeIgniter
-        $client = \Config\Services::curlrequest();
+        $client = Services::curlrequest();
 
         $feeds = [
             'Google Alerts - Internet of Things' => 'https://www.google.fr/alerts/feeds/07930128904714915235/4610366205862015580',
             'Google Alerts - objets connectés' => 'https://www.google.fr/alerts/feeds/07930128904714915235/17509983635208520170',
             'Google Alerts - IoT' => 'https://www.google.fr/alerts/feeds/07930128904714915235/14995384441107474932',
-            'Google Alerts - internet des objets' => 'https://www.google.fr/alerts/feeds/07930128904714915235/10372901485195743878'
+            'Google Alerts - internet des objets' => 'https://www.google.fr/alerts/feeds/07930128904714915235/10372901485195743878',
         ];
 
         $nouveauxArticles = 0;
@@ -42,13 +45,13 @@ class Veille extends BaseController
                 // On fait la requête en simulant Google Chrome sous Windows
                 $response = $client->request('GET', $url, [
                     'headers' => [
-                        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+                        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
                     ],
-                    'http_errors' => false  // Empêche le script de planter si un site renvoie une erreur 403 ou 404
+                    'http_errors' => false,  // Empêche le script de planter si un site renvoie une erreur 403 ou 404
                 ]);
 
                 // Si le site a bien répondu (Code 200 = OK)
-                if ($response->getStatusCode() === 200) {
+                if (200 === $response->getStatusCode()) {
                     $xmlString = $response->getBody();
                     // On charge le XML depuis la chaîne de texte récupérée
                     $rss = @simplexml_load_string($xmlString);
@@ -73,7 +76,7 @@ class Veille extends BaseController
                                 }
 
                                 // Nettoyage de la vraie URL Google Alerts
-                                if (strpos($link, 'google.com/url') !== false && preg_match('/url=([^&]+)/', $link, $matches)) {
+                                if (str_contains($link, 'google.com/url') && preg_match('/url=([^&]+)/', $link, $matches)) {
                                     $link = urldecode($matches[1]);
                                 }
 
@@ -94,12 +97,12 @@ class Veille extends BaseController
                                     'link' => $link,
                                     'description' => $description,
                                     'pub_date' => $dateSql,
-                                    'source' => $sourceName
+                                    'source' => $sourceName,
                                 ];
 
                                 // Insertion
                                 if ($model->insertIfNotExists($data)) {
-                                    $nouveauxArticles++;
+                                    ++$nouveauxArticles;
                                 }
                             }
                         }
@@ -107,10 +110,10 @@ class Veille extends BaseController
                         $erreurs[] = "Le flux <b>{$sourceName}</b> a renvoyé du texte, mais ce n'est pas un XML valide.";
                     }
                 } else {
-                    $erreurs[] = "Le site <b>{$sourceName}</b> a bloqué la requête (Erreur HTTP " . $response->getStatusCode() . ').';
+                    $erreurs[] = "Le site <b>{$sourceName}</b> a bloqué la requête (Erreur HTTP ".$response->getStatusCode().').';
                 }
             } catch (\Exception $e) {
-                $erreurs[] = "Impossible de se connecter à <b>{$sourceName}</b> (" . $e->getMessage() . ').';
+                $erreurs[] = "Impossible de se connecter à <b>{$sourceName}</b> (".$e->getMessage().').';
             }
         }
 

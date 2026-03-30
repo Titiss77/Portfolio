@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use CodeIgniter\Boot;
 use Config\Paths;
 
@@ -30,10 +32,10 @@ if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
  */
 
 // Path to the front controller (this file)
-define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+define('FCPATH', __DIR__.DIRECTORY_SEPARATOR);
 
 // Ensure the current directory is pointing to the front controller's directory
-if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
+if (FCPATH !== getcwd().DIRECTORY_SEPARATOR) {
     chdir(FCPATH);
 }
 
@@ -48,12 +50,12 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
 
 // LOAD OUR PATHS CONFIG FILE
 // This is the line that might need to be changed, depending on your folder structure.
-require FCPATH . '../app/Config/Paths.php';
+require FCPATH.'../app/Config/Paths.php';
 // ^^^ Change this line if you move your application folder
 
 $paths = new Paths();
 
 // LOAD THE FRAMEWORK BOOTSTRAP FILE
-require $paths->systemDirectory . '/Boot.php';
+require $paths->systemDirectory.'/Boot.php';
 
 exit(Boot::bootWeb($paths));

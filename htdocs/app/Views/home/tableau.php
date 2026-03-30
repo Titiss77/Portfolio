@@ -1,6 +1,6 @@
-<?= $this->extend('templates/layout') ?>
+<?php echo $this->extend('templates/layout'); ?>
 
-<?= $this->section('content') ?>
+<?php echo $this->section('content'); ?>
 
 <div class="tableau">
     <table id="monTableau">
@@ -12,36 +12,36 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($categories as $categorie): ?>
+            <?php foreach ($categories as $categorie) { ?>
             <?php
                 $rowspan = count($categorie['competences']);
                 $firstRow = true;
-                foreach ($categorie['competences'] as $comp):
+                foreach ($categorie['competences'] as $comp) {
                     ?>
             <tr>
-                <?php if ($firstRow): ?>
-                <td rowspan="<?= $rowspan ?>"><?= esc($categorie['appellation'] ?? $categorie['libelle']) ?></td>
+                <?php if ($firstRow) { ?>
+                <td rowspan="<?php echo $rowspan; ?>"><?php echo esc($categorie['appellation'] ?? $categorie['libelle']); ?></td>
                 <?php $firstRow = false; ?>
-                <?php endif; ?>
+                <?php } ?>
 
-                <td><?= esc($comp['libelle']) ?></td>
+                <td><?php echo esc($comp['libelle']); ?></td>
 
-                <?php if ($comp['vu'] === '1' && $comp['justification_data']): ?>
+                <?php if ('1' === $comp['vu'] && $comp['justification_data']) { ?>
                 <?php
                             $justification = nl2br(htmlspecialchars($comp['justification_data']['justification'], ENT_QUOTES));
-                            // NOUVEAU : On récupère urlDrive à la place de l'image
-                            $url_drive = !empty($comp['justification_data']['urlDrive']) ? esc($comp['justification_data']['urlDrive']) : '';
-                            ?>
+                    // NOUVEAU : On récupère urlDrive à la place de l'image
+                    $url_drive = !empty($comp['justification_data']['urlDrive']) ? esc($comp['justification_data']['urlDrive']) : '';
+                    ?>
                 <td style="text-align: center;">
-                    <button class="btn-justification" data-justification="<?= $justification ?>"
-                        data-drive="<?= $url_drive ?>">X</button>
+                    <button class="btn-justification" data-justification="<?php echo $justification; ?>"
+                        data-drive="<?php echo $url_drive; ?>">X</button>
                 </td>
-                <?php else: ?>
+                <?php } else { ?>
                 <td></td>
-                <?php endif; ?>
+                <?php } ?>
             </tr>
-            <?php endforeach; ?>
-            <?php endforeach; ?>
+            <?php } ?>
+            <?php } ?>
         </tbody>
     </table>
 </div>
@@ -88,4 +88,4 @@ function closePopup() {
 document.getElementById('overlay').addEventListener('click', closePopup);
 </script>
 
-<?= $this->endSection() ?>
+<?php echo $this->endSection(); ?>

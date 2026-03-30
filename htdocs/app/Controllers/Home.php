@@ -1,8 +1,10 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Models\CategoriesBloc1Model;
-use App\Models\CompetenceModel;
 use App\Models\CompetencesAcocherModel;
 use App\Models\ContactModel;
 use App\Models\ExpProModel;
@@ -29,7 +31,7 @@ class Home extends BaseController
             // Le CSS global (style.css) est déjà chargé dans le layout, pas besoin de l'ajouter ici
             'personne' => $infos_generalesModel->first(),
             'lienExternes' => $lienExternesModel->findAll(),
-            'loisirs' => $loisirsModel->findAll()
+            'loisirs' => $loisirsModel->findAll(),
         ];
 
         // On ne retourne plus que la vue finale
@@ -49,7 +51,7 @@ class Home extends BaseController
             $competences = $compModel->where('id_categorie', $cat['id'])->orderBy('id', 'ASC')->findAll();
 
             foreach ($competences as &$comp) {
-                if ($comp['vu'] === '1' && !empty($comp['id_justification'])) {
+                if ('1' === $comp['vu'] && !empty($comp['id_justification'])) {
                     $comp['justification_data'] = $justifModel->find($comp['id_justification']);
                 } else {
                     $comp['justification_data'] = null;
@@ -61,7 +63,7 @@ class Home extends BaseController
 
         $data = [
             'title' => 'Compétences - Portfolio',
-            'categories' => $categories
+            'categories' => $categories,
         ];
 
         return view('home/tableau', $data);
@@ -72,7 +74,7 @@ class Home extends BaseController
         $projetModel = new ProjetModel();
         $data = [
             'title' => 'Mes Projets - Portfolio',
-            'projets' => $projetModel->orderBy('id', 'DESC')->findAll()
+            'projets' => $projetModel->orderBy('id', 'DESC')->findAll(),
         ];
 
         return view('home/projets', $data);
@@ -83,7 +85,7 @@ class Home extends BaseController
         helper('form');
         $data = [
             'title' => 'Contacts - Portfolio',
-            'css' => ['contact.css']  // <-- On charge le CSS spécifique au formulaire de contact !
+            'css' => ['contact.css'],  // <-- On charge le CSS spécifique au formulaire de contact !
         ];
 
         return view('home/contact', $data);
@@ -97,7 +99,7 @@ class Home extends BaseController
             'nom' => 'required|min_length[2]',
             'prenom' => 'required|min_length[2]',
             'mail' => 'required|valid_email',
-            'texte' => 'required|min_length[5]'
+            'texte' => 'required|min_length[5]',
         ];
 
         if (!$this->validate($rules)) {
@@ -112,7 +114,7 @@ class Home extends BaseController
             'nom' => $this->request->getPost('nom'),
             'prenom' => $this->request->getPost('prenom'),
             'mail' => $this->request->getPost('mail'),
-            'message' => $this->request->getPost('texte')
+            'message' => $this->request->getPost('texte'),
         ]);
 
         return redirect()->to('contact')->with('success', 'Votre message a bien été envoyé !');

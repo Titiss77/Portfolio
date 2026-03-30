@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/css/cv_style.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/cv_style.css'); ?>">
 </head>
 
 <body>
@@ -16,38 +16,38 @@
 
     <section>
         <div class="photo">
-            <img src="<?= base_url('images/me.png') ?>" alt="Ma photo de profil">
+            <img src="<?php echo base_url('images/me.png'); ?>" alt="Ma photo de profil">
         </div>
         <div class="prez">
             <h2>Qui suis-je ?</h2>
             <p>Diplômé du Baccalauréat et actuellement en BTS SIO.</p>
-            <a href="<?= base_url('pdf/CV- Mathis Frances--Lavillauroy.pdf') ?>" download>Mon CV au format PDF</a>
+            <a href="<?php echo base_url('pdf/CV- Mathis Frances--Lavillauroy.pdf'); ?>" download>Mon CV au format PDF</a>
         </div>
         <div class="contact">
             <h2>Informations de contact</h2>
             <div class="contact-flex">
                 <p>Nom : </p>
-                <p><?= esc($contact['nom']) ?></p>
+                <p><?php echo esc($contact['nom']); ?></p>
             </div>
             <div class="contact-flex">
                 <p>Adresse : </p>
-                <p><?= esc($contact['adresse']) ?></p>
+                <p><?php echo esc($contact['adresse']); ?></p>
             </div>
             <div class="contact-flex">
                 <p>Téléphone :</p>
-                <p><?= esc($contact['tel']) ?></p>
+                <p><?php echo esc($contact['tel']); ?></p>
             </div>
             <div class="contact-flex">
                 <p>Mail : </p>
-                <p><a href="mailto:<?= esc($contact['email']) ?>"><?= esc($contact['email']) ?></a></p>
+                <p><a href="mailto:<?php echo esc($contact['email']); ?>"><?php echo esc($contact['email']); ?></a></p>
             </div>
             <div class="contact-flex">
                 <p>Permis :</p>
-                <p><?= esc($contact['permis']) ?></p>
+                <p><?php echo esc($contact['permis']); ?></p>
             </div>
             <div class="social">
-                <a href="<?= esc($lienExternes['url']) ?>">
-                    <img src="<?= base_url('images/cv/lk.png') ?>" alt="Logo Lk">
+                <a href="<?php echo esc($lienExternes['url']); ?>">
+                    <img src="<?php echo base_url('images/cv/lk.png'); ?>" alt="Logo Lk">
                 </a>
             </div>
         </div>
@@ -55,40 +55,40 @@
 
     <section>
         <h2>Expériences professionnelles</h2>
-        <?php foreach ($experiences as $exp): ?>
+        <?php foreach ($experiences as $exp) { ?>
         <div class="exp">
             <div class="exp-logo">
-                <a href="#"><img src="<?= base_url(esc($exp['chemin_image'])) ?>" alt="<?= esc($exp['libelle']) ?>"
+                <a href="#"><img src="<?php echo base_url(esc($exp['chemin_image'])); ?>" alt="<?php echo esc($exp['libelle']); ?>"
                         class="chemin_image"></a>
             </div>
             <div class="exp-info">
-                <h3 class="libelle"><?= esc($exp['libelle']) ?></h3>
-                <h4 class="nom_entreprise"><?= esc($exp['nom_entreprise']) ?></h4>
-                <h4 class="periode"><?= esc($exp['periode']) ?></h4>
+                <h3 class="libelle"><?php echo esc($exp['libelle']); ?></h3>
+                <h4 class="nom_entreprise"><?php echo esc($exp['nom_entreprise']); ?></h4>
+                <h4 class="periode"><?php echo esc($exp['periode']); ?></h4>
             </div>
             <div class="exp-desc">
-                <p class="description"><?= esc($exp['description']) ?></p>
+                <p class="description"><?php echo esc($exp['description']); ?></p>
             </div>
         </div>
-        <?php endforeach; ?>
+        <?php } ?>
     </section>
 
     <section>
         <h2>Formation</h2>
-        <?php foreach ($formations as $form): ?>
+        <?php foreach ($formations as $form) { ?>
         <div class="exp">
             <div class="exp-logo">
-                <a href="#"><img src="<?= base_url(esc($form['chemin_image'])) ?>" alt="Logo école"></a>
+                <a href="#"><img src="<?php echo base_url(esc($form['chemin_image'])); ?>" alt="Logo école"></a>
             </div>
             <div class="exp-info">
-                <h3 class="nom_etablissement"><?= esc($form['nom_etablissement']) ?></h3>
-                <h4 class="periode"><?= esc($form['periode']) ?></h4>
+                <h3 class="nom_etablissement"><?php echo esc($form['nom_etablissement']); ?></h3>
+                <h4 class="periode"><?php echo esc($form['periode']); ?></h4>
             </div>
             <div class="exp-desc">
-                <p><?= esc($form['description']) ?></p>
+                <p><?php echo esc($form['description']); ?></p>
             </div>
         </div>
-        <?php endforeach; ?>
+        <?php } ?>
     </section>
 
     <section>
@@ -141,12 +141,12 @@
 
     <section>
         <h2>Centres d'intérêt</h2>
-        <?php foreach ($loisirs as $loisir): ?>
+        <?php foreach ($loisirs as $loisir) { ?>
         <figure class="interet">
-            <img src="<?= base_url(esc($loisir['chemin_image'])) ?>" alt="<?= esc($loisir['libelle']) ?>">
-            <figcaption><?= esc($loisir['libelle']) ?></figcaption>
+            <img src="<?php echo base_url(esc($loisir['chemin_image'])); ?>" alt="<?php echo esc($loisir['libelle']); ?>">
+            <figcaption><?php echo esc($loisir['libelle']); ?></figcaption>
         </figure>
-        <?php endforeach; ?>
+        <?php } ?>
     </section>
 </body>
 

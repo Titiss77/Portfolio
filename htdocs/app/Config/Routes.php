@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use CodeIgniter\Router\RouteCollection;
 
-/**
- * @var RouteCollection $routes
- */
+// @var RouteCollection $routes
 $routes->get('/', 'Home::index');
 $routes->get('tableau', 'Home::tableau');
 $routes->get('projets', 'Home::projets');
