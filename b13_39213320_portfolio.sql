@@ -105,7 +105,7 @@ DROP TABLE IF EXISTS `justification`;
 CREATE TABLE IF NOT EXISTS `justification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `justification` text NOT NULL,
-  `chemin_image` varchar(255) DEFAULT NULL,
+  `urlDrive` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 12 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 INSERT INTO `justification` (`id`, `justification`, `urlDrive`) VALUES
