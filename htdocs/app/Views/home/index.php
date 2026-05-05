@@ -31,7 +31,6 @@
         <div class="expertise" id="expertise">
             <p class="entete2">Me concernant</p>
             <p class="perso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo nl2br(esc($personne['me_concernant'])); ?></p>
-            <div class="container"></div>
         </div>
         <div class="divLoisir">
             <p class="entete2">Loisirs</p>

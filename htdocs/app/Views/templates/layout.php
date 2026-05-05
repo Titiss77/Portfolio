@@ -24,7 +24,7 @@
         <ul>
             <li><a href="<?php echo base_url('/'); ?>" class="acceuil">Accueil</a></li>
             <li><a href="<?php echo base_url('tableau'); ?>" class="h-tableau">Compétences</a></li>
-            <li><a href="<?php echo base_url('projets'); ?>" class="projets">Projets</a></li>
+            <li><a href="<?php echo base_url('projets'); ?>" class="projets">Projets Perso</a></li>
             <li><a href="<?php echo base_url('veille'); ?>" class="veille">Ma Veille</a></li>
             <li><a href="<?php echo base_url('contact'); ?>" class="contact">Contacts</a></li>
         </ul>

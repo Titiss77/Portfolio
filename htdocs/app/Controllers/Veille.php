@@ -1,10 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controllers;
 
 use App\Models\ArticleModel;
+use App\Models\SyntheseModel; // <-- Ne pas oublier d'importer le nouveau modèle
 use Config\Services;
 
 class Veille extends BaseController
@@ -12,13 +11,16 @@ class Veille extends BaseController
     public function index()
     {
         helper('text');
-
-        $model = new ArticleModel();
-
+        $articleModel = new ArticleModel();
+        $syntheseModel = new SyntheseModel();
+        
         $data = [
-            'title' => 'Ma Veille IoT',
-            'css' => ['veille_style.css'],
-            'articles' => $model->orderBy('pub_date', 'DESC')->findAll(),
+            'title'    => 'Ma Veille IoT',
+            'css'      => ['veille_style.css'],
+            // On récupère la dernière synthèse en date
+            'synthese' => $syntheseModel->orderBy('date_mise_a_jour', 'DESC')->first(),
+            // On récupère tous les articles normalement
+            'articles' => $articleModel->orderBy('pub_date', 'DESC')->findAll(),
         ];
 
         return view('veille/index', $data);

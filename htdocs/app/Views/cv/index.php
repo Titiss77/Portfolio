@@ -16,7 +16,7 @@
 
     <section>
         <div class="photo">
-            <img src="<?php echo base_url('images/me.png'); ?>" alt="Ma photo de profil">
+            <img src="<?php echo base_url('favicon.ico'); ?>" alt="Ma photo de profil">
         </div>
         <div class="prez">
             <h2>Qui suis-je ?</h2>
